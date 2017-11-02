@@ -12,6 +12,11 @@
                                 
                             </h2>
                             <ul class="header-dropdown m-r--5">
+                                <li>
+                                    <a href="javascript:void(0);" data-toggle="cardloading" title="Reload" data-loading-effect="timer">
+                                        <i class="material-icons">loop</i>
+                                    </a>
+                                </li>
                                 <li class="dropdown">
                                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                         <i class="material-icons">more_vert</i>

@@ -23,6 +23,7 @@
 
     <!-- Animation Css -->
     <link href="{{asset('plugins/animate-css/animate.css')}}" rel="stylesheet" />
+    <link href="{{asset('plugins/waitme/waitMe.css')}}" rel="stylesheet" />
 
     <!-- Morris Chart Css-->
     <link href="{{asset('plugins/morrisjs/morris.css')}}" rel="stylesheet" />
@@ -598,6 +599,7 @@
     <script src="{{asset('plugins/chartjs/Chart.bundle.js')}}"></script>
 
     <!-- Flot Charts Plugin Js -->
+     <script src="{{asset('plugins/waitme/waitMe.js')}}"></script>
     <script src="{{asset('plugins/flot-charts/jquery.flot.js')}}"></script>
     <script src="{{asset('plugins/flot-charts/jquery.flot.resize.js')}}"></script>
     <script src="{{asset('plugins/flot-charts/jquery.flot.pie.js')}}"></script>
@@ -611,6 +613,7 @@
     <script src="{{asset('js/admin.js')}}"></script>
     <script src="{{asset('js/pages/index.js')}}"></script>
     <script src="{{asset('js/pages/ui/dialogs.js')}}"></script>
+    <script src="{{asset('js/pages/cards/basic.js')}}"></script>
      <!-- SweetAlert Plugin Js -->
     <script src="{{asset('plugins/sweetalert/sweetalert-dev.js')}}"></script>
 

@@ -306,39 +306,39 @@
             <div class="menu">
                 <ul class="list">
                     <li class="header">MAIN NAVIGATION</li>
-                    <li class="active">
+                    <li class="{{ Request::segment(1) === 'home' ? 'active' : null }}">
                         <a href="{{ url('home') }}">
                             <i class="material-icons">home</i>
                             <span>Home</span>
                         </a>
                     </li>
 
-                    <li>
+                    <li class="{{ Request::segment(1) === 'karyawan' ? 'active' : null }}">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">group</i>
                             <span>Karyawan</span>
                         </a>
                         <ul class="ml-menu">
-                            <li>
+                            <li class="{{ Request::path() ==  'karyawan' ? 'active' : ''  }}">
                                 <a href="{{ url('karyawan') }}">Lihat Data Karyawan</a>
                             </li>
-                            <li>
+                            <li class="{{ Request::path() ==  'karyawan/create' ? 'active' : ''  }}">
                                 <a href="{{ url('karyawan/create') }}">Tambah Data Karyawan</a>
                             </li>
                             
                         </ul>
                     </li>
 
-                    <li>
+                    <li class="{{ Request::segment(1) === 'member' ? 'active' : null }}">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">account_box</i>
                             <span>Member</span>
                         </a>
                         <ul class="ml-menu">
-                            <li>
+                            <li class="{{ Request::path() ==  'member' ? 'active' : ''  }}">
                                 <a href="{{ url('member') }}">Lihat Data Member</a>
                             </li>
-                            <li>
+                            <li class="{{ Request::path() ==  'member/create' ? 'active' : ''  }}">
                                 <a href="{{ url('member/create') }}">Tambah Data Member</a>
                             </li>
                             
@@ -346,23 +346,23 @@
                     </li>
 
                   
-                    <li>
+                    <li class="{{ Request::segment(1) === 'buku' ? 'active' : null }}">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">book</i>
                             <span>Buku</span>
                         </a>
                         <ul class="ml-menu">
-                            <li>
+                            <li class="{{ Request::path() ==  'buku' ? 'active' : ''  }}">
                                 <a href="{{ url('buku') }}">Lihat Data</a>
                             </li>
-                            <li>
+                            <li class="{{ Request::path() ==  'buku/create' ? 'active' : ''  }}">
                                 <a href="{{ url('buku/create') }}">Tambah Data</a>
                             </li>
                             
                         </ul>
                     </li>
 
-                    <li>
+                    <li class="{{ Request::path() ==  'kategori' ? 'active' : ''  }}">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">library_add</i>
                             <span>Jenis & Genre</span>
@@ -375,7 +375,7 @@
                             <li>
                                 <a href="#" data-type="Agenre">Add Genre</a>
                             </li>
-                            <li>
+                            <li class="{{ Request::path() ==  'kategori' ? 'active' : ''  }}">
                                 <a href="{{ url('kategori') }}">Lihat Data</a>
                             </li>
                             

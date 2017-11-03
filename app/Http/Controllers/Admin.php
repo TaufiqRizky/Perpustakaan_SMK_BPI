@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class Admin extends Controller
 {
@@ -42,6 +43,11 @@ class Admin extends Controller
          \App\M_Genre::destroy($id);//method menghapus data 
         
    }
+
+  public function logoutAdmin(){
+      Auth::logout();
+      return redirect('/login');
+    }  
 
 
 

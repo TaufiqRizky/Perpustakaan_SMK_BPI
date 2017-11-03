@@ -80,7 +80,7 @@
             <div class="navbar-header">
                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                 <a href="javascript:void(0);" class="bars"></a>
-                <a class="navbar-brand" href="/">PERPUSTAKAAN - YAYASAN BPI</a>
+                <a class="navbar-brand" href="/">PERPUSTAKAAN - SMK BPI</a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -286,7 +286,7 @@
             <!-- User Info -->
             <div class="user-info">
                 <div class="image">
-                    <img src="{{asset('images/user.png')}}" width="48" height="48" alt="User" />
+                    <img src="{{asset('images/profile/user.jpg')}}" width="48" height="48" alt="User" />
                 </div>
                 <div class="info-container">
                     <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</div>
@@ -297,7 +297,7 @@
                             <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
                             <li role="seperator" class="divider"></li>
                           
-                            <li><a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="material-icons">input</i>Sign Out</a></li>
+                            <li><a href="{!! route('logout') !!}"><i class="material-icons">input</i>Sign Out</a></li>
                         </ul>
                     </div>
                 </div>
@@ -393,7 +393,7 @@
                                 <a href="#" data-type="Apinjam">Peminjaman</a>
                             </li>
                             <li>
-                                <a href="#" data-type="Agenre">Pengembalian</a>
+                                <a href="#" data-type="#">Pengembalian</a>
                             </li>
                             <li class="{{ Request::path() ==  'transaksi' ? 'active' : ''  }}">
                                 <a href="{{ url('kategori') }}">Lihat Data</a>

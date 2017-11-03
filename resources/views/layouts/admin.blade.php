@@ -389,8 +389,8 @@
                             <span>Transaksi</span>
                         </a>
                         <ul class="ml-menu js-sweetalert">
-                            <li>
-                                <a href="#" data-type="Apinjam">Peminjaman</a>
+                            <li class="{{ Request::path() ==  'peminjaman' ? 'active' : ''  }}">
+                                <a href="{{ route('admin-index-peminjaman') }}" data-type="Apinjam">Peminjaman</a>
                             </li>
                             <li>
                                 <a href="#" data-type="#">Pengembalian</a>

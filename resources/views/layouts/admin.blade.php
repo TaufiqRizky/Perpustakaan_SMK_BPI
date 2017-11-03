@@ -9,7 +9,7 @@
     <meta name="_token" content="{{ csrf_token() }}"/>
     <title>{{ config('app.name') }}</title>
     <!-- Favicon-->
-    <link rel="shortcut icon" href="{{asset('assets/img/bpi.png')}}" type="image/x-icon">
+    <link rel="shortcut icon" sizes="228x228" href="{{ asset('assets/img/favicon/coast-228x228.png') }}">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -377,6 +377,25 @@
                                 <a href="#" data-type="Agenre">Add Genre</a>
                             </li>
                             <li class="{{ Request::path() ==  'kategori' ? 'active' : ''  }}">
+                                <a href="{{ url('kategori') }}">Lihat Data</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+
+                    <li class="{{ Request::path() ==  'transaksi' ? 'active' : ''  }}">
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">credit_card</i>
+                            <span>Transaksi</span>
+                        </a>
+                        <ul class="ml-menu js-sweetalert">
+                            <li>
+                                <a href="#" data-type="Apinjam">Peminjaman</a>
+                            </li>
+                            <li>
+                                <a href="#" data-type="Agenre">Pengembalian</a>
+                            </li>
+                            <li class="{{ Request::path() ==  'transaksi' ? 'active' : ''  }}">
                                 <a href="{{ url('kategori') }}">Lihat Data</a>
                             </li>
                             

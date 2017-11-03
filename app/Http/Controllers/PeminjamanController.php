@@ -16,6 +16,6 @@ class PeminjamanController extends Controller
 
     public function index(Request $req)
     {
-    	return view('Admin.peminjaman.index');
+    	return view('admin.peminjaman.index');
    	}
 }

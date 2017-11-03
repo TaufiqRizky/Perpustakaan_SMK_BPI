@@ -16,7 +16,7 @@ class Admin extends Controller
     public function index(){
        $data['jenis']= \App\M_Jenis::all();
         $data['genre']= \App\M_Genre::all();
-        return view('admin.kategori',$data);
+        return view('admin.kategori.index',$data);
     }
 
     public function storeJ(Request $request){

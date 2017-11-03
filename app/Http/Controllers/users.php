@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class users extends Controller
 {
@@ -17,6 +18,6 @@ class users extends Controller
       ->join('jenis','buku.jenis','=','jenis.id')
       ->join('genre','buku.genre','=','genre.id')
       ->select('buku.id','buku.barcode','buku.cover','buku.judul','buku.pengarang','buku.penerbit','genre.genre','jenis.jenis','buku.stok','buku.sinopsis')->get();
-		return view('admin.Buku',$data);
+		return view('admin.buku.index',$data);
 	}
 }

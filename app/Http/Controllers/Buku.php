@@ -19,13 +19,13 @@ class Buku extends Controller
       ->join('jenis','buku.jenis','=','jenis.id')
       ->join('genre','buku.genre','=','genre.id')
       ->select('buku.id','buku.barcode','buku.cover','buku.judul','buku.pengarang','buku.penerbit','genre.genre','jenis.jenis','buku.stok','buku.sinopsis')->get();
-		return view('admin.Buku',$data);
+		return view('admin.buku.index',$data);
 	}
 
     public function create(){
       $data['jenis']= \App\M_Jenis::all();
        $data['genre']= \App\M_genre::all();
-   		return view('admin.cBuku',$data);
+   		return view('admin.buku.create',$data);
    }
 
    public function store(Request $request){
@@ -53,7 +53,7 @@ class Buku extends Controller
       $data['jenis']= \App\M_Jenis::all();
        $data['genre']= \App\M_genre::all();
          $data['buku'] = \App\M_Buku::find($id);
-         return view('admin.ebuku',$data);
+         return view('admin.buku.edit',$data);
    }
 
    public function update(Request $request, $id){

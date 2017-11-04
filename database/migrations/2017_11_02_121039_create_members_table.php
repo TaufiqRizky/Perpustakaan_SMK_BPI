@@ -14,7 +14,8 @@ class CreateMembersTable extends Migration
     public function up()
     {
         Schema::create('member', function (Blueprint $table) {
-            $table->string('barcode')->primary();
+            $table->increments('id');
+            $table->string('barcode')->unique();
             $table->string('nama');
             $table->text('alamat');
             $table->string('kelas');
@@ -33,6 +34,6 @@ class CreateMembersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('members');
+        Schema::dropIfExists('member');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class Admin extends Controller
 {
@@ -15,7 +16,7 @@ class Admin extends Controller
     public function index(){
        $data['jenis']= \App\M_Jenis::all();
         $data['genre']= \App\M_Genre::all();
-        return view('admin.kategori',$data);
+        return view('admin.kategori.index',$data);
     }
 
     public function storeJ(Request $request){
@@ -42,6 +43,11 @@ class Admin extends Controller
          \App\M_Genre::destroy($id);//method menghapus data 
         
    }
+
+  public function logoutAdmin(){
+      Auth::logout();
+      return redirect('/login');
+    }  
 
 
 

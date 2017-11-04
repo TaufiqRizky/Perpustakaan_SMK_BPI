@@ -18,6 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('logout', array('as' => 'logout', 'uses' => 'Admin@logoutAdmin'));
 //buku
 Route::get('buku','Buku@index');
 Route::get('buku/create','Buku@create');
@@ -43,3 +44,10 @@ Route::delete('genre/{id}','admin@destroy_genre');
 	Route::post('karyawan/store','users@store_K');
 // end karyawan
 
+// route Peminjaman
+		Route::get('peminjaman', array('as' => 'admin-index-peminjaman', 'uses' => 'PeminjamanController@index'));
+        Route::get('peminjaman/create', array('as' => 'admin-create-peminjaman', 'uses' => 'PeminjamanController@create'));
+        Route::post('peminjaman/store', array('as' => 'admin-post-peminjaman', 'uses' => 'PeminjamanController@store'));
+        Route::get('peminjaman/{id}/edit', array('as' => 'admin-edit-peminjaman', 'uses' => 'PeminjamanController@edit'));
+        Route::post('peminjaman/{id}/update', array('as' => 'admin-update-peminjaman', 'uses' => 'PeminjamanController@update'));
+        Route::delete('peminjaman/{id}/delete', array('as' => 'admin-delete-peminjaman', 'uses' => 'PeminjamanController@destroy'));

@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="block-header">
-    <h2>Tambah Buku</h2>
+    <h2>Tambah Karyawan</h2>
 </div>
 
 <div class="row clearfix">
@@ -24,85 +24,55 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="body js-sweetalert">
-                           
+                        <div class="body">
+                           <form action="{{ url('karyawan/store') }}" enctype="multipart/form-data" method="POST">
                             {!! csrf_field() !!}
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="judul" id="judul" required>
-                                        <label class="form-label">Judul</label>
+                                        <input type="file" class="form-control" name="photo" id="photo" accept="image/*" required>
                                     </div>
                                 </div>
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="pengarang" id="pengarang" required>
-                                        <label class="form-label">Pengarang</label>
+                                        <input type="text" class="form-control" name="nik" id="nik" required>
+                                        <label class="form-label">NIK</label>
                                     </div>
                                 </div>
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="penerbit" id="penerbit" required>
-                                        <label class="form-label">Penerbit</label>
+                                        <input type="text" class="form-control" name="nama" id="nama" required>
+                                        <label class="form-label">Nama</label>
                                     </div>
                                 </div>
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input type="number" class="form-control" name="stok" id="stok" required>
-                                        <label class="form-label">Stok</label>
+                                        <input type="text" class="form-control" name="tlp" id="tlp" required>
+                                        <label class="form-label">No. Telepon</label>
                                     </div>
                                 </div>
-                    			<div class="row clearfix">
-                                <div class="col-sm-6">
-                                    <select class="form-control show-tick" id="jenis">
-                                        <option value="">-- Select Jenis --</option>
-                                        @foreach($jenis as $row => $value)
-                                        <option value="{{$value->id}}">{{$value->jenis}}</option>
-                                        @endforeach
-                                        <div class="Ojenis">
-                                            
-                                        </div>
-                                    </select>
-                                </div>
-                                <div class="col-sm-6">
-                                    <select class="form-control show-tick" id="genre" >
-                                        <option value="">-- Select Genre --</option>
-                                        @foreach($genre as $row => $value)
-                                        <option value="{{$value->id}}">{{$value->genre}}</option>
-                                        @endforeach
-                                        <div class="Ogenre">
-                                            
-                                        </div>
-                                    </select>
-                                </div>
-                            </div>
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <textarea name="sinopsis" cols="30" rows="5" class="form-control no-resize" id="sinopsis" ></textarea>
-                                        <label class="form-label">Sinopsis</label>
+                                        <input type="text" class="form-control" name="jabatan" id="jabatan" required>
+                                        <label class="form-label">Jabatan</label>
                                     </div>
                                 </div>
-                                
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <textarea name="alamat" cols="30" rows="5" class="form-control no-resize" id="alamat" ></textarea>
+                                        <label class="form-label">Alamat</label>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <input type="checkbox" id="checkbox" name="checkbox">
                                     <label for="checkbox">Saya Bukan Robot</label>
                                 </div>
-                                <button class="btn btn-primary waves-effect" data-type="prompt">Simpan</button>
+                                <button type="submit" class="btn btn-primary waves-effect" >Simpan</button>
                         
                         </div>
                     </div>
                 </div>
+                </form>
             </div>
-
-
-@endsection
-
-@section('js')
-
-<script type="text/javascript">
-
-
-   
-</script>
 
 
 @endsection

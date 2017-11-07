@@ -42,6 +42,10 @@ Route::delete('genre/{id}','admin@destroy_genre');
 	Route::get('karyawan','KaryawanController@index');
 	Route::get('karyawan/create','KaryawanController@create');
 	Route::post('karyawan/store','KaryawanController@store');
+	Route::delete('karyawan/{id}','KaryawanController@destroy');
+	Route::get('/karyawan/{id}/detail','KaryawanController@detail');
+	Route::get('/karyawan/{id}/edit','KaryawanController@edit');
+	Route::put('/karyawan/{id}', 'KaryawanController@update');
 // end karyawan
 
 // route Peminjaman

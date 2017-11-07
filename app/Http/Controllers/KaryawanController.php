@@ -20,8 +20,8 @@ class KaryawanController extends Controller
    		$karyawan= new \App\karyawan;
    		$karyawan->nik=$request->nik;
    		$karyawan->nama=$request->nama;
-      	$karyawan->alamat=$request->alamat;
-      	$karyawan->tlp=$request->tlp;
+      $karyawan->alamat=$request->alamat;
+      $karyawan->tlp=$request->tlp;
    		$karyawan->jabatan=$request->jabatan;
 
   		if ($request->hasFile('photo')){
@@ -45,4 +45,35 @@ class KaryawanController extends Controller
    		return redirect('/karyawan/create');
    		
    }
+
+   public function index(){
+      $data['karyawan']= \App\karyawan::all();
+      return view('admin.karyawan.index',$data);
+   }
+
+   public function destroy($id){
+         \App\karyawan::destroy($id);//method menghapus data 
+        
+   }
+
+   public function detail($id){
+      $data['karyawan'] = \App\karyawan::find($id);
+      return view('admin.karyawan.detail',$data);
+   }
+
+   public function edit($id){
+      $data['karyawan'] = \App\karyawan::find($id);
+      return view('admin.karyawan.edit',$data);
+   }
+
+   public function update(Request $request, $id){
+      $karyawan = \App\karyawan::find($id);
+      $karyawan->nama=$request->nama;
+      $karyawan->alamat=$request->alamat;
+      $karyawan->tlp=$request->tlp;
+      $karyawan->jabatan=$request->jabatan;
+      $karyawan->save();
+      return redirect('/karyawan');
+   }
+
 }

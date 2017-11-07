@@ -20,4 +20,8 @@ class users extends Controller
       ->select('buku.id','buku.barcode','buku.cover','buku.judul','buku.pengarang','buku.penerbit','genre.genre','jenis.jenis','buku.stok','buku.sinopsis')->get();
 		return view('admin.buku.index',$data);
 	}
+
+	public function create_K(){
+   		return view('admin.karyawan.create');
+	}
 }

@@ -24,23 +24,16 @@ class KaryawanController extends Controller
       $karyawan->tlp=$request->tlp;
    		$karyawan->jabatan=$request->jabatan;
 
-  		if ($request->hasFile('photo')){
-  			$photo = $request->file('photo');
+  		if ($request->hasFile('photo')) {
+        $photo = $request->file('photo');
+          if ($photo->isValid()) {
+            $fileName = date('Y_m_d_His').'_'.$photo->getClientOriginalName();
+            
+            $photo->move(public_path('storage/karyawan'), $fileName);
 
-  			$name = date('Y_m_d_His').'_'.$photo->getClientOriginalName();
-
-  			$photo->move("/images/karyawan",$name);
-
-  			$karyawan->photo = $name;
-  		}
-  		// if ($request->hasFile('image')) {
-  		// 	$image = $request->file('image');
-  		// 	$name= $image->getClientOriginalName();
-  		// 	$image->move(public_path('product-image'),$name);
-  		// 	$product->image = $name;
-  			
-  		// }
-  		// $karyawan->photo = $fileName;
+      $karyawan->photo = $fileName;
+          }
+      }      
    		$karyawan->save();
    		return redirect('/karyawan/create');
    		

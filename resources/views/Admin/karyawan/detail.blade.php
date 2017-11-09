@@ -59,7 +59,7 @@
 var table;
       $(document).ready(function(){
        
-       $("#nik").barcode("{{ $karyawan->nik }}", "ean13", { barHeight:50});     
+       $("#nik").barcode("{{ $karyawan->nik }}", "codabar", { barHeight:50});     
       
 });
 </script>

@@ -53,7 +53,7 @@
                                         <td>{{ $value->alamat }}</td>
                                         <td>
                                             
-                                            <a class="btn btn-success waves-effect" data-type="" href="{{ url('karyawan/'.$value->id.'/detail') }}" ><i class="material-icons">detail</i></a>
+                                            <a class="btn btn-success waves-effect" data-type="" href="{{ url('karyawan/'.$value->id.'/detail') }}" ><i class="material-icons">remove_red_eye</i></a>
 
                                             <a class="btn btn-primary waves-effect" data-type="" href="{{ url('karyawan/'.$value->id.'/edit') }}" ><i class="material-icons">edit</i></a>
                                         
@@ -79,7 +79,7 @@
 var table;
       $(document).ready(function(){
        @foreach($karyawan as $row => $value)
-       $("#nik{{ $row+1 }}").barcode("{{ $value->nik }}", "ean13", { barHeight:50});     
+       $("#nik{{ $row+1 }}").barcode("{{ $value->nik }}", "codabar", { barHeight:50});     
         @endforeach
    table = $('#karyawan').DataTable();
 });

@@ -35,7 +35,7 @@ class KaryawanController extends Controller
           }
       }      
    		$karyawan->save();
-   		return redirect('/karyawan/create');
+   		return redirect('/karyawan');
    		
    }
 

@@ -584,6 +584,9 @@
 
     <!-- Jquery Core Js -->
     <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>  
+    <script type="text/javascript">
+        var table;
+    </script>
 
 <!-- Data Table -->
    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.css"/>
@@ -619,11 +622,11 @@
 
     <!-- Flot Charts Plugin Js -->
      <script src="{{asset('plugins/waitme/waitMe.js')}}"></script>
-    <script src="{{asset('plugins/flot-charts/jquery.flot.js')}}"></script>
+    <!-- <script src="{{asset('plugins/flot-charts/jquery.flot.js')}}"></script>
     <script src="{{asset('plugins/flot-charts/jquery.flot.resize.js')}}"></script>
     <script src="{{asset('plugins/flot-charts/jquery.flot.pie.js')}}"></script>
     <script src="{{asset('plugins/flot-charts/jquery.flot.categories.js')}}"></script>
-    <script src="{{asset('plugins/flot-charts/jquery.flot.time.js')}}"></script>
+    <script src="{{asset('plugins/flot-charts/jquery.flot.time.js')}}"></script> -->
 
     <!-- Sparkline Chart Plugin Js -->
     <script src="{{asset('plugins/jquery-sparkline/jquery.sparkline.js')}}"></script>

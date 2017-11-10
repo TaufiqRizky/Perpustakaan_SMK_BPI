@@ -79,7 +79,7 @@
 @section('js')
 
 <script type="text/javascript">
-var table;
+
       $(document).ready(function(){
        @foreach($buku as $row => $value)
        $("#barcode{{ $row+1 }}").barcode("{{ $value->barcode }}", "ean13", { barHeight:50});     

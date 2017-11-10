@@ -76,13 +76,15 @@
 @section('js')
 
 <script type="text/javascript">
-var table;
+
       $(document).ready(function(){
        @foreach($karyawan as $row => $value)
        $("#nik{{ $row+1 }}").barcode("{{ $value->nik }}", "codabar", { barHeight:50});     
         @endforeach
-   table = $('#karyawan').DataTable();
+        table = $('#karyawan');
+  $('#karyawan').DataTable();
 });
+
 </script>
 
 

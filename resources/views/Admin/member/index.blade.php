@@ -80,7 +80,7 @@
 @section('js')
 
 <script type="text/javascript">
-var table;
+
       $(document).ready(function(){
        @foreach($member as $row => $value)
        $("#barcode{{ $row+1 }}").barcode("{{ $value->barcode }}", "codabar", { barHeight:50});     

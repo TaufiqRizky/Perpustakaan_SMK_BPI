@@ -13,9 +13,12 @@ function initLoading() {
             color: '#555'
         });
 
+
         setTimeout(function () {
             //Loading hide
             $loading.waitMe('hide');
+            table.load();
+
         }, 3200);
     });
 }

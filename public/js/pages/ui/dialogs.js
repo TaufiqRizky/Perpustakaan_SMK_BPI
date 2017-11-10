@@ -34,6 +34,10 @@ $(function () {
 
             Delete_karyawan(id);
         }
+        else if (type === 'D_member') {
+
+            Delete_member(id);
+        }
         else if (type === 'with-custom-icon') {
             showWithCustomIconMessage();
         }
@@ -212,6 +216,41 @@ function Delete_karyawan(id) {
         if (isConfirm) {
             $.ajax({
                 url:"karyawan/"+id,
+                type:'DELETE',
+                headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') },
+                data:{id:id},
+                success: function (data) {
+                   swal("Deleted!", "Your record has been deleted.", "success");
+                   $('.item'+id).fadeOut(1500, function(){ $(this).remove();});
+                   
+                    },
+                    error: function (data) {
+                         swal("Gagal!", "", "error");
+                    }
+            });
+             
+        } else {
+            swal("Cancelled", "Your record is safe :)", "error");
+        }
+    });
+}
+
+function Delete_member(id) {
+    
+    swal({
+        title: "Are you sure?",
+        text: "You will not be able to recover this record!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel it!",
+        closeOnConfirm: false,
+        closeOnCancel: false
+    }, function (isConfirm) {
+        if (isConfirm) {
+            $.ajax({
+                url:"member/"+id,
                 type:'DELETE',
                 headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') },
                 data:{id:id},

@@ -48,6 +48,16 @@ Route::delete('genre/{id}','admin@destroy_genre');
 	Route::put('/karyawan/{id}', 'KaryawanController@update');
 // end karyawan
 
+// member
+	Route::get('member','MemberController@index');
+	Route::get('member/create','MemberController@create');
+	Route::post('member/store','MemberController@store');
+	Route::delete('member/{id}','MemberController@destroy');
+	Route::get('/member/{id}/detail','MemberController@detail');
+	Route::get('/member/{id}/edit','MemberController@edit');
+	Route::put('/member/{id}', 'MemberController@update');
+// end member
+
 // route Peminjaman
 		Route::get('peminjaman', array('as' => 'admin-index-peminjaman', 'uses' => 'PeminjamanController@index'));
         Route::get('peminjaman/create', array('as' => 'admin-create-peminjaman', 'uses' => 'PeminjamanController@create'));

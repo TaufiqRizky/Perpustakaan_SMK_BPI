@@ -65,3 +65,6 @@ Route::delete('genre/{id}','admin@destroy_genre');
         Route::get('peminjaman/{id}/edit', array('as' => 'admin-edit-peminjaman', 'uses' => 'PeminjamanController@edit'));
         Route::post('peminjaman/{id}/update', array('as' => 'admin-update-peminjaman', 'uses' => 'PeminjamanController@update'));
         Route::delete('peminjaman/{id}/delete', array('as' => 'admin-delete-peminjaman', 'uses' => 'PeminjamanController@destroy'));
+
+ // route pengembalian
+        Route::get('pengembalian','PengembalianController@index');

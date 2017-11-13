@@ -26,24 +26,26 @@
                         </div>
                         <center>
                         <div class="body">
-                                    
-                                    <div style="height: 12cm; width: 10cm; background-image: url('/images/bg.jpg'); background-size: 100% 100%;  ">
+                                    <canvas>
+                                        <div style="height: 12cm; width: 10cm; background-image: url('/images/bg.jpg'); background-size: 100% 100%;  ">
+                                            <br>
+                                            <b><div style="color: white; font-size: 25px;">PERPUSTAKAAN BPI</div></b>
+                                            <br>
+                                            <div style="height: 8cm; width: 8cm; background-image: url('/images/avatar_karyawan.png'); background-size: 100% 100%;">
+                                            
+                                        </div>
                                         <br>
-                                        <b><div style="color: white; font-size: 25px;">PERPUSTAKAAN BPI</div></b>
-                                        <br>
-                                        <div style="height: 8cm; width: 8cm; background-image: url('/images/avatar_karyawan.png'); background-size: 100% 100%;">
+                                        <div style="color: white; font-size: 25px;"> {{ $karyawan->nama }}</div>
+                                        </div>
+                                        <div style="height: 4cm; width: 10cm; background-color: white">
+                                            <br>
+                                        <div style="color: #1E8BC3; font-size: 20px;"> {{ $karyawan->jabatan }}</div>
+                                            <br>
+                                            <div id="nik"></div>
                                         
-                                    </div>
-                                    <br>
-                                    <div style="color: white; font-size: 25px;"> {{ $karyawan->nama }}</div>
-                                    </div>
-                                    <div style="height: 4cm; width: 10cm; background-color: white">
-                                        <br>
-                                    <div style="color: #1E8BC3; font-size: 20px;"> {{ $karyawan->jabatan }}</div>
-                                        <br>
-                                        <div id="nik"></div>
-                                    
-                                    </div>
+                                        </div>
+                                    </canvas>
+                                 
                                 
                         </div>
                         </center>
@@ -62,6 +64,7 @@ var table;
        $("#nik").barcode("{{ $karyawan->nik }}", "codabar", { barHeight:50});     
       
 });
+
 </script>
 
 

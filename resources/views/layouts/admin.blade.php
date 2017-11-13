@@ -392,11 +392,11 @@
                             <li class="{{ Request::path() ==  'peminjaman' ? 'active' : ''  }}">
                                 <a href="{{ route('admin-index-peminjaman') }}" data-type="Apinjam">Peminjaman</a>
                             </li>
-                            <li>
-                                <a href="#" data-type="#">Pengembalian</a>
+                            <li class="{{ Request::path() ==  'pengembalian' ? 'active' : ''  }}">
+                                <a href="{{ url('pengembalian') }}" >Pengembalian</a>
                             </li>
                             <li class="{{ Request::path() ==  'transaksi' ? 'active' : ''  }}">
-                                <a href="{{ url('kategori') }}">Lihat Data</a>
+                                <a href="#">Lihat Data</a>
                             </li>
                             
                         </ul>

@@ -55,7 +55,7 @@
                                         <td>{{ $value->penerbit }}</td>
                                         <td>{{ $value->jenis }}</td>
                                         <td>{{ $value->genre }}</td>
-                                        <td>{{ $value->sinopsis }}</td>
+                                        <td>{{ str_limit($value->sinopsis,50) }}</td>
                                         <td>{{ $value->stok }}</td>
                                         <td>
                                             

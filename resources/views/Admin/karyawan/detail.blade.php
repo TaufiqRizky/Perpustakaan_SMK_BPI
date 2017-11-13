@@ -27,20 +27,20 @@
                         <center>
                         <div class="body">
                                     
-                                    <div style="height: 12cm; width: 10cm; background-image: url('/images/bg.jpg'); background-size: 100% 100%;  ">
+                                    <div style="height: 8cm; width: 6cm; background-image: url('/images/bg.jpg'); background-size: 100% 100%;  ">
                                         <br>
-                                        <b><div style="color: white; font-size: 25px;">PERPUSTAKAAN BPI</div></b>
+                                        <b><div style="color: white; font-size: 20px;">PERPUSTAKAAN BPI</div></b>
                                         <br>
-                                        <div style="height: 8cm; width: 8cm; background-image: url('/images/avatar_karyawan.png'); background-size: 100% 100%;">
+                                        <div style="height: 4cm; width: 4cm; background-image: url('/images/avatar_karyawan.png'); background-size: 100% 100%;">
                                         
                                     </div>
                                     <br>
-                                    <div style="color: white; font-size: 25px;"> {{ $karyawan->nama }}</div>
+                                    <div style="color: white; font-size: 20px;"> {{ $karyawan->nama }}</div>
+                                    <br>
                                     </div>
-                                    <div style="height: 4cm; width: 10cm; background-color: white">
+                                    <div style="height: 3cm; width: 6cm; background-color: grey">
                                         <br>
-                                    <div style="color: #1E8BC3; font-size: 20px;"> {{ $karyawan->jabatan }}</div>
-                                        <br>
+                                    <div style="color: #1E8BC3; font-size: 15px;"> {{ $karyawan->jabatan }}</div>
                                         <div id="nik"></div>
                                     
                                     </div>
@@ -59,7 +59,7 @@
 var table;
       $(document).ready(function(){
        
-       $("#nik").barcode("{{ $karyawan->nik }}", "codabar", { barHeight:50});     
+       $("#nik").barcode("{{ $karyawan->nik }}", "code128", { barHeight:50});     
       
 });
 </script>

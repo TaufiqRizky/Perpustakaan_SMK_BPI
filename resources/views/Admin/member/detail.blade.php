@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="block-header">
-    <h2>Edit Karyawan</h2>
+    <h2>Detail Member</h2>
 </div>
 
 <div class="row clearfix">
@@ -27,19 +27,19 @@
                         <center>
                         <div class="body">
                                     
-                                    <div style="height: 12cm; width: 10cm; background-image: url('/images/bg-2.jpg'); background-size: 100% 100%;  ">
+                                    <div style="height: 6.5cm; width: 6cm; background-image: url('/images/bg-2.jpg'); background-size: 100% 100%;  ">
                                         <br>
-                                        <b><div style="color: white; font-size: 25px;">PERPUSTAKAAN BPI</div></b>
+                                        <b><div style="color: white; font-size: 15px;">PERPUSTAKAAN BPI</div></b>
                                         <br>
-                                        <div style="height: 8cm; width: 6cm; background-image: url('/images/logo-bpi.png'); background-size: 100% 100%;">
-                                        
+                                        <div style="height: 3.5cm; width: 2.5cm; background-image: url('/images/logo-bpi.png'); background-size: 100% 100%;">   
                                     </div>
                                     <br>
-                                    <div style="color: white; font-size: 25px;"> {{ $member->nama }}</div>
+                                    <b><div style="color: white; font-size: 15px;"> {{ $member->nama }}</div></b>
+                                    <br>
                                     </div>
-                                    <div style="height: 4cm; width: 10cm; background-color: #bdc3c7">
+                                    <div style="height: 2.5cm; width: 6cm; background-color: white">
                                         <br>
-                                        <div style="color: #1E8BC3; font-size: 20px;">{{ $member->unit }}</div>
+                                        <b><div style="color: #1E8BC3; font-size: 15px;">{{ $member->unit }}</div></b>
                                         <br>
                                         <div id="barcode"></div>
                                     
@@ -59,7 +59,7 @@
 var table;
       $(document).ready(function(){
        
-       $("#barcode").barcode("{{ $member->barcode }}", "codabar", { barHeight:50});     
+       $("#barcode").barcode("{{ $member->barcode }}", "codabar", { barHeight:15});     
       
 });
 </script>

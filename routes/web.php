@@ -68,3 +68,5 @@ Route::delete('genre/{id}','admin@destroy_genre');
 
  // route pengembalian
         Route::get('pengembalian','PengembalianController@index');
+        Route::get('get-member/{id}','PengembalianController@get_member');
+        Route::get('get-peminjaman/{id}','PengembalianController@get_peminjaman');

@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="block-header">
-    <h2>Edit Karyawan</h2>
+    <h2>Detail Karyawan</h2>
 </div>
 
 <div class="row clearfix">
@@ -26,47 +26,24 @@
                         </div>
                         <center>
                         <div class="body">
-<<<<<<< HEAD
-                                    <canvas>
-                                        <div style="height: 12cm; width: 10cm; background-image: url('/images/bg.jpg'); background-size: 100% 100%;  ">
-                                            <br>
-                                            <b><div style="color: white; font-size: 25px;">PERPUSTAKAAN BPI</div></b>
-                                            <br>
-                                            <div style="height: 8cm; width: 8cm; background-image: url('/images/avatar_karyawan.png'); background-size: 100% 100%;">
-                                            
-                                        </div>
+                                    <div style="height: 6.5cm; width: 6cm; background-image: url('/images/bg.jpg'); background-size: 100% 100%;  ">
                                         <br>
-                                        <div style="color: white; font-size: 25px;"> {{ $karyawan->nama }}</div>
-                                        </div>
-                                        <div style="height: 4cm; width: 10cm; background-color: white">
-                                            <br>
-                                        <div style="color: #1E8BC3; font-size: 20px;"> {{ $karyawan->jabatan }}</div>
-                                            <br>
-                                            <div id="nik"></div>
-                                        
-                                        </div>
-                                    </canvas>
-                                 
-=======
-                                    
-                                    <div style="height: 8cm; width: 6cm; background-image: url('/images/bg.jpg'); background-size: 100% 100%;  ">
+                                        <b><div style="color: white; font-size: 15px;">PERPUSTAKAAN BPI</div></b>
                                         <br>
-                                        <b><div style="color: white; font-size: 20px;">PERPUSTAKAAN BPI</div></b>
-                                        <br>
-                                        <div style="height: 4cm; width: 4cm; background-image: url('/images/avatar_karyawan.png'); background-size: 100% 100%;">
+                                        <div style="height: 3.5cm; width: 3.5cm; background-image: url('/images/avatar_karyawan.png'); background-size: 100% 100%;">
                                         
                                     </div>
                                     <br>
-                                    <div style="color: white; font-size: 20px;"> {{ $karyawan->nama }}</div>
+                                    <b><div style="color: white; font-size: 15px;"> {{ $karyawan->nama }}</div></b>
                                     <br>
                                     </div>
-                                    <div style="height: 3cm; width: 6cm; background-color: grey">
+                                    <div style="height: 2.5cm; width: 6cm; background-color: white">
                                         <br>
-                                    <div style="color: #1E8BC3; font-size: 15px;"> {{ $karyawan->jabatan }}</div>
+                                    <b><div style="color: #1E8BC3; font-size: 15px;"> {{ $karyawan->jabatan }}</div></b>
+                                    <br>
                                         <div id="nik"></div>
                                     
                                     </div>
->>>>>>> ae9738ba73da3b889d4f193340e0e31f6c2d58a7
                                 
                         </div>
                         </center>
@@ -82,7 +59,7 @@
 var table;
       $(document).ready(function(){
        
-       $("#nik").barcode("{{ $karyawan->nik }}", "code128", { barHeight:50});     
+       $("#nik").barcode("{{ $karyawan->nik }}", "code128", { barHeight:15});     
       
 });
 

@@ -40,7 +40,7 @@
                                 </div>
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="nama" id="nama" required>
+                                        <input type="text" class="form-control" name="nama" id="nama" pattern="[A-Za-z]{1,20}" title="Hanya boleh huruf dan maksimal 20 karakter" required>
                                         <label class="form-label">Nama</label>
                                     </div>
                                 </div>

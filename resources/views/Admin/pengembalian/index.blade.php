@@ -37,6 +37,7 @@
                                             <label class="form-label">Id Member</label>
                                         </div>
                                 </div>
+                               
                                 <div class="form-group form-float n_member">
                                         <div class="form-line">
                                             <input type="text" class="form-control" name="n_member" id="n_member" value=" " readonly>
@@ -55,6 +56,24 @@
                                             <label class="form-label">Unit</label>
                                         </div>
                                 </div>
+                                 <div class="form-group form-float tgl_pinjam">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" name="tgl_pinjam" id="tgl_pinjam" value="<?php echo date('d-M-Y')?>" readonly>
+                                            <label class="form-label">Tanggal zaman Old</label>
+                                        </div>
+                                </div>
+                                 <div class="form-group form-float ">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" name="tgl" id="tgl" value="<?php echo date('d-M-Y')?>" readonly>
+                                            <label class="form-label">Tanggal zaman Now</label>
+                                        </div>
+                                </div>
+                                 <div class="form-group form-float ">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" name="total_denda">
+                                            <label class="form-label">Total Denda</label>
+                                        </div>
+                                </div>
                                 <br><br>
                                 <h5>Daftar Buku Yang di Pinjam</h5>
                                 <table border="1" class="table table-bordered table-striped">
@@ -69,9 +88,13 @@
                                     <tbody id="table_peminjaman">
                                         
                                     </tbody>
-                                    
                                 </table>
-                            
+                                 <div class="form-group form-float ">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" name="Scan" id="scan" value=" " >
+                                            <label class="form-label">Scan Buku Yang di Pinjam</label>
+                                        </div>
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -82,10 +105,13 @@
 @endsection
 @section('js')
 <script type="text/javascript">
+var json_member;
+var json_peminjaman;
 $(document).ready(function(){
     $(".n_member").hide();
     $(".alamat").hide();
     $(".unit").hide();
+    $(".tgl_pinjam").hide();
 
     });
 
@@ -103,24 +129,36 @@ $(document).ready(function(){
                     }
     }
 
-    $(document).on("keyup ", "#id_member", function(){
+    // function denda(){
+    //     var total_denda=Object.keys().length;
+    //     var tgl_pinjam=$('#tgl_pinjam').val();
+    //     var tgl=$('#tgl').val();
+    //     var tgl_kembali=;
+                
+    // }
+
+    $(document).on("keyup", "#id_member", function(){
         var id=$(this).val();
 
         $(".n_member").show('slow','swing');
          $('.alamat').show('slow','swing');
          $('.unit').show('slow','swing');
+          $('.tgl_pinjam').show('slow','swing');
         
             $.ajax({
-                url:"get-member/"+id,
+                url:"get-member/"+$(this).val(),
                 type:'GET',
                 headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') },
-                data:{id:id},
+                data:{id:$(this).val()},
                 success: function (data) {
                    var r = $.parseJSON(data);
+                   json_member=r;
+
                     $('#n_member').val(r[0]["nama"]); 
                     $('#alamat').val(r[0]["alamat"]);
                     $('#unit').val(r[0]["unit"]);
-                    console.log(r);
+                   
+                  
                     console.log($(this).val());
                     },
                     error: function (data) {
@@ -129,13 +167,14 @@ $(document).ready(function(){
             });
 
             $.ajax({
-                url:"get-peminjaman/"+id,
+                url:"get-peminjaman/"+$(this).val(),
                 type:'GET',
                 headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') },
-                data:{id:id},
+                data:{id:$(this).val()},
                 success: function (data) {
                    var r = $.parseJSON(data);
-                   
+                   json_peminjaman=r;
+                    $('#tgl_pinjam').val(r[0]["tgl_pinjam"]);
                    data_peminjaman(r);
                  
                    
@@ -144,6 +183,16 @@ $(document).ready(function(){
                          console.log('error');
                     }
             });
+      
+       
+            
+        });
+
+    $(document).on("keyup", "#scan", function(){
+        var id=$(this).val();
+        if (json_peminjaman==null || json_member==null) {
+            swal ( "please" ,  "Scan member barcode first !!" ,  "error" );
+        }
       
        
             

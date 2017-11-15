@@ -59,7 +59,7 @@
 var table;
       $(document).ready(function(){
        
-       $("#barcode").barcode("{{ $member->barcode }}", "codabar", { barHeight:15});     
+       $("#barcode").barcode("{{ $member->barcode }}", "code128", { barHeight:15});     
       
 });
 </script>

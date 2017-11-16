@@ -190,16 +190,14 @@
                             <span>Transaksi</span>
                         </a>
                         <ul class="ml-menu js-sweetalert">
-                            <li class="{{ Request::path() ==  'transaksi/peminjaman' ? 'active' : ''  }}">
+                            <li class="{{ Request::path() ==  'peminjaman' ? 'active' : ''  }}">
                                 <a href="{{ route('admin-index-peminjaman') }}" data-type="Apinjam">Peminjaman</a>
+                            </li>
+                            <li class="{{ Request::path() ==  'peminjaman/create' ? 'active' : ''  }}">
                             </li>
                             <li class="{{ Request::path() ==  'transaksi/pengembalian' ? 'active' : ''  }}">
                                 <a href="{{ url('transaksi/pengembalian') }}" >Pengembalian</a>
                             </li>
-                            <li class="{{ Request::path() ==  'transaksi' ? 'active' : ''  }}">
-                                <a href="#">Lihat Data</a>
-                            </li>
-                            
                         </ul>
                     </li>
                     

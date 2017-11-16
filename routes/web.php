@@ -59,12 +59,14 @@ Route::delete('genre/{id}','admin@destroy_genre');
 // end member
 
 // route Peminjaman
-		Route::get('transaksi/peminjaman', array('as' => 'admin-index-peminjaman', 'uses' => 'PeminjamanController@index'));
-        Route::get('transaksi/peminjaman/create', array('as' => 'admin-create-peminjaman', 'uses' => 'PeminjamanController@create'));
-        Route::post('transaksi/peminjaman/store', array('as' => 'admin-post-peminjaman', 'uses' => 'PeminjamanController@store'));
-        Route::get('transaksi/peminjaman/{id}/edit', array('as' => 'admin-edit-peminjaman', 'uses' => 'PeminjamanController@edit'));
-        Route::post('transaksi/peminjaman/{id}/update', array('as' => 'admin-update-peminjaman', 'uses' => 'PeminjamanController@update'));
-        Route::delete('transaksi/peminjaman/{id}/delete', array('as' => 'admin-delete-peminjaman', 'uses' => 'PeminjamanController@destroy'));
+		Route::get('peminjaman', array('as' => 'admin-index-peminjaman', 'uses' => 'PeminjamanController@index'));
+        Route::get('peminjaman/create', array('as' => 'admin-create-peminjaman', 'uses' => 'PeminjamanController@create'));
+        Route::post('peminjaman/store', array('as' => 'admin-post-peminjaman', 'uses' => 'PeminjamanController@store'));
+        Route::get('peminjaman/{id}/edit', array('as' => 'admin-edit-peminjaman', 'uses' => 'PeminjamanController@edit'));
+        Route::get('peminjaman/{id}/show', array('as' => 'admin-show-peminjaman', 'uses' => 'PeminjamanController@show'));
+        Route::post('peminjaman/{id}/update', array('as' => 'admin-update-peminjaman', 'uses' => 'PeminjamanController@update'));
+        Route::delete('peminjaman/{id}/delete', array('as' => 'admin-delete-peminjaman', 'uses' => 'PeminjamanController@destroy'));
+        Route::get('datatables', array('as' => 'datatables-peminjaman', 'uses' => 'PeminjamanController@datatables'));
 
  // route pengembalian
         Route::get('transaksi/pengembalian','PengembalianController@index');

@@ -27,11 +27,7 @@
                         <div class="body">
                            <form action="{{ url('karyawan/store') }}" enctype="multipart/form-data" method="POST">
                             {!! csrf_field() !!}
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <input type="file" class="form-control" name="photo" id="photo" accept="image/*" required>
-                                    </div>
-                                </div>
+                                
                                 <div class="form-group form-float">
                                     <div class="form-line">
                                         <input type="text" class="form-control" name="nik" id="nik" required>
@@ -40,7 +36,7 @@
                                 </div>
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="nama" id="nama" pattern="[A-Za-z]{1,20}" title="Hanya boleh huruf dan maksimal 20 karakter" required>
+                                        <input type="text" class="form-control" name="nama" id="nama" required>
                                         <label class="form-label">Nama</label>
                                     </div>
                                 </div>
@@ -63,8 +59,21 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="checkbox" id="checkbox" name="checkbox">
-                                    <label for="checkbox">Saya Bukan Robot</label>
+                                    <div class="col-sm-12" align="left">
+                                        <img width="120" class=" img-responsive preview" alt="Preview Photo">
+                                    </div>
+                                </div>
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <div class="input-group">
+                                            <label class="input-group-btn">
+                                                <span class="btn btn-primary">
+                                                    Set as Cover <input type="file" class="inputfoto" accept="image/png, image/jpeg, image/gif, image/ico" name="photo" id="logo" style="display: none;" multiple>
+                                                </span>
+                                            </label>
+                                            <input type="text" class="form-control" readonly>
+                                        </div>
+                                    </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary waves-effect" >Simpan</button>
                         
@@ -74,5 +83,51 @@
                 </form>
             </div>
 
+
+@endsection
+
+@section('js')
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        //preview logo
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('.preview').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $(".inputfoto").change(function(){
+            readURL(this);
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(function() {
+          // We can attach the `fileselect` event to all file inputs on the page
+        $(document).on('change', ':file', function() {
+            var input = $(this),
+                numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+            input.trigger('fileselect', [numFiles, label]);
+        });
+          // We can watch for our custom `fileselect` event like this
+        $(document).ready( function() {
+            $(':file').on('fileselect', function(event, numFiles, label) {
+
+                var input = $(this).parents('.input-group').find(':text'),
+                    log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+                if( input.length ) {
+                    input.val(log);
+                }
+            });
+        });
+    });
+</script>
 
 @endsection

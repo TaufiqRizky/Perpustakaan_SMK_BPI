@@ -16,6 +16,10 @@ class PengembalianGalleries extends Migration
         Schema::create('pengembalian_galleries', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('pengembalian_id')->unsigned();
+            $table->foreign('pengembalian_id')
+                    ->references('id')
+                    ->on('pengembalian')
+                    ->onDelete('CASCADE');
             $table->string('buku_barcode')->unique();
             $table->timestamps();
         });

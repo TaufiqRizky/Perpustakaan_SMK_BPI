@@ -27,11 +27,7 @@
                         <div class="body">
                            <form action="{{ url('member/store') }}" enctype="multipart/form-data" method="POST">
                             {!! csrf_field() !!}
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <input type="file" class="form-control" name="foto" id="foto" accept="image/*" required>
-                                    </div>
-                                </div>
+                                
                                 <div class="form-group form-float">
                                     <div class="form-line">
                                         <input type="text" class="form-control" name="barcode" id="barcode" required>
@@ -44,18 +40,13 @@
                                         <label class="form-label">Nama</label>
                                     </div>
                                 </div>
-                                <div class="row clearfix">
-                                <div class="col-sm-12">
-                                    <select class="form-control show-tick" name="jk" id="jk">
-                                        <option value="">-- Select Jenis Kelamin --</option>
-                                        <option value="L">L</option>
-                                        <option value="P">P</option>
-                                        <div class="Ojenis">
-                                            
-                                        </div>
-                                    </select>
-                                </div>
-                                </div>
+                                <p>
+                                    <input name="jk" type="radio" id="jk" value="L">
+                                    <label for="jk">Laki-laki</label>
+
+                                    <input name="jk" type="radio" id="jkp" value="P">
+                                    <label for="jkp">Perempuan</label>
+                                </p>
                                 <div class="form-group form-float">
                                     <div class="form-line">
                                         <input type="text" class="form-control" name="usia" id="usia" required>
@@ -81,8 +72,21 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="checkbox" id="checkbox" name="checkbox">
-                                    <label for="checkbox">Saya Bukan Robot</label>
+                                    <div class="col-sm-12" align="left">
+                                        <img width="120" class=" img-responsive preview" alt="Preview Photo">
+                                    </div>
+                                </div>
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <div class="input-group">
+                                            <label class="input-group-btn">
+                                                <span class="btn btn-primary">
+                                                    Set as Cover <input type="file" class="inputfoto" accept="image/png, image/jpeg, image/gif, image/ico" name="foto" id="logo" style="display: none;" multiple>
+                                                </span>
+                                            </label>
+                                            <input type="text" class="form-control" readonly>
+                                        </div>
+                                    </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary waves-effect" >Simpan</button>
                         
@@ -92,5 +96,51 @@
                 </form>
             </div>
 
+
+@endsection
+
+@section('js')
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        //preview logo
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('.preview').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $(".inputfoto").change(function(){
+            readURL(this);
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(function() {
+          // We can attach the `fileselect` event to all file inputs on the page
+        $(document).on('change', ':file', function() {
+            var input = $(this),
+                numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+            input.trigger('fileselect', [numFiles, label]);
+        });
+          // We can watch for our custom `fileselect` event like this
+        $(document).ready( function() {
+            $(':file').on('fileselect', function(event, numFiles, label) {
+
+                var input = $(this).parents('.input-group').find(':text'),
+                    log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+                if( input.length ) {
+                    input.val(log);
+                }
+            });
+        });
+    });
+</script>
 
 @endsection

@@ -16,7 +16,10 @@ class CreatePeminjamanGalleriesTable extends Migration
         Schema::create('peminjaman_galleries', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('peminjaman_id')->unsigned();
-            $table->foreign('peminjaman_id')->references('id')->on('peminjaman');
+            $table->foreign('peminjaman_id')
+                    ->references('id')
+                    ->on('peminjaman')
+                    ->onDelete('CASCADE');
             $table->string('buku_barcode')->unique();
             $table->timestamps();
         });

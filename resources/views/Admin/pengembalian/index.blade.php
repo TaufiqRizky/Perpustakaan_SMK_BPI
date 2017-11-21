@@ -75,23 +75,14 @@
                                 </div>
                                  <div class="form-group form-float tgl_pinjam">
                                         <div class="form-line">
-<<<<<<< HEAD
-                                            <input type="text" class="form-control" name="tgl_pinjam" id="tgl_pinjam" value =" " readonly>
-                                            <label class="form-label">Tanggal zaman Old</label>
-=======
                                             <input type="text" class="form-control" name="tgl_pinjam" id="tgl_pinjam" value=" "  readonly>
                                             <label class="form-label">Tanggal Pinjam</label>
->>>>>>> efe00ce2323182186f2d4b413ddb88eef6f2b4ba
                                         </div>
                                 </div>
                                  <div class="form-group form-float ">
                                         <div class="form-line">
                                             <input type="text" class="form-control" name="tgl" id="tgl" value="<?php echo date('Y-m-d')?>" readonly>
-<<<<<<< HEAD
-                                            <label class="form-label">Tanggal zaman Now</label>
-=======
                                             <label class="form-label">Tanggal </label>
->>>>>>> efe00ce2323182186f2d4b413ddb88eef6f2b4ba
                                         </div>
                                 </div>
                                  <div class="form-group form-float ">

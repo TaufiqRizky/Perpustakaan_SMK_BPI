@@ -17,7 +17,7 @@ class CreatePeminjamanGalleriesTable extends Migration
             $table->increments('id');
             $table->integer('peminjaman_id')->unsigned();
             $table->foreign('peminjaman_id')->references('id')->on('peminjaman');
-            $table->string('buku_barcode')->unique();
+            $table->string('buku_barcode');
             $table->timestamps();
         });
     }

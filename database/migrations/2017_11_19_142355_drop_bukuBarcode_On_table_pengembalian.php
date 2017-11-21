@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class PengembalianGalleries extends Migration
+class DropBukuBarcodeOnTablePengembalian extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class PengembalianGalleries extends Migration
      */
     public function up()
     {
-        Schema::create('pengembalian_galleries', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('pengembalian_id')->unsigned();
-            $table->string('buku_barcode');
-            $table->timestamps();
+         Schema::table('pengembalian', function (Blueprint $table) {
+              $table->dropForeign('pengembalian_buku_barcode_foreign');
+             $table->dropColumn('buku_barcode');
+       
         });
     }
 

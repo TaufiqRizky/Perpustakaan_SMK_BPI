@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Pengembalian;
+use App\denda;
+use App\PengembalianGallery;
 
 class PengembalianController extends Controller
 {
@@ -28,5 +31,29 @@ class PengembalianController extends Controller
       ->join('buku','peminjaman_galleries.buku_barcode','=','buku.barcode')->where('peminjaman.member_barcode', '=', $id)
      ->get();
       return $pinjam->toJson();
+	  }
+
+	 
+
+	  public function store(Request $data){
+	  	$j = (int)$data['a'];
+	  	$Pengembalian = new Pengembalian;
+        $Pengembalian->member_barcode= $data['member'];
+        $Pengembalian->id_peminjaman = $data['peminjaman'];
+        $Pengembalian->tgl_dikembalikan   = $data['tgl'];
+       
+        $Pengembalian->save();
+      
+        for ($i=0; $i < $j ; $i++) { 
+            $PengembalianGallery = PengembalianGallery::create([
+                'pengembalian_id' => $Pengembalian->id,
+                'buku_barcode' => $data->gallery[$i]
+            ]);
+        }
+        $denda = new denda;
+        $denda->total_denda = $data['denda'];
+        $denda->pengembalian_id = $Pengembalian->id;
+ 		$denda->save();
+       
 	  }
 }

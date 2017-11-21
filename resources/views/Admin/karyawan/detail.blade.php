@@ -30,7 +30,7 @@
                                         <br>
                                         <b><div style="color: white; font-size: 15px;">PERPUSTAKAAN BPI</div></b>
                                         <br>
-                                        <div style="height: 3.5cm; width: 3.5cm; background-image: url('/images/avatar_karyawan.png'); background-size: 100% 100%;">
+                                        <div class="img-circle" style="height: 3.5cm; width: 3.5cm; background-image: url('/storage/karyawan/{{$karyawan->photo}}'); background-size: 100% 100%;">
                                         
                                     </div>
                                     <br>

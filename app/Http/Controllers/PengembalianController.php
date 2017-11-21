@@ -49,6 +49,11 @@ class PengembalianController extends Controller
                 'pengembalian_id' => $Pengembalian->id,
                 'buku_barcode' => $data->gallery[$i]
             ]);
+
+            DB::table('buku')
+            ->where('barcode', $data->gallery[$i])
+            ->update(['stok' => $data->stok[$i]]);
+
         }
         $denda = new denda;
         $denda->total_denda = $data['denda'];

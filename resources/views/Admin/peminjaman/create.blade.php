@@ -77,12 +77,7 @@
                                 <label class="form-label">Tanggal Pengembalian</label>
                             </div>
                         </div>
-                        <div class="form-group form-float">
-                            <div class="form-line">
-                                <input type="text" class="form-control" name="buku_barcode[]" multiple="multiple" id="buku_barcode" required>
-                                <label class="form-label">Barcode Buku</label>
-                            </div>
-                        </div>
+                       
                         <button type="submit" class="btn btn-primary waves-effect" >Simpan</button>
                     </form>   
                 </div>

@@ -128,6 +128,7 @@
 var json_member;
 var json_peminjaman;
 var gallery_peminjaman = {};
+var stok_buku= {};
 var id_peminjaman;
 var a=0;
 var denda;
@@ -144,10 +145,11 @@ $(document).ready(function(){
                
          var i=0;
          var j=1;
+
                  $('#table_peminjaman').empty();
 
                    while (i < jml) {
-
+                    stok_buku[i]=Number(r[i]['stok'])+1;
                         $('#table_peminjaman').append("<tr class='background_berhasil "+ r[i]['buku_barcode']+" ' ><td id='"+ r[i]['buku_barcode']+"'>"+j+"</td><td>"+r[i]['buku_barcode']+"</td><td>"+r[i]['judul']+"</td></tr>");
                         i++;
                         j++;
@@ -160,7 +162,7 @@ $(document).ready(function(){
     
     var tgl_baru= tgl.toString('Y-m-d');
 
-    var selisih = new Date(new Date(x) - new Date(tgl)) ;
+    var selisih = new Date(new Date(tgl)  - new Date(x)) ;
     var days  = selisih/1000/60/60/24;
 
 
@@ -168,6 +170,7 @@ $(document).ready(function(){
     var total_denda = $('#total_denda').val();
 
     var error = null;
+    console.log(days);
      if (Number(days) > 1) {
         denda = days*2000;
         var dendaInt = parseInt(denda, 10);
@@ -183,7 +186,10 @@ $(document).ready(function(){
         var dendaRp = dendaStrRevTitik.split('').reverse().join('');
         $('#total_denda').val('Rp. '+dendaRp);
      } else {
+        denda=0;
+        $('#total_denda').val('Rp. '+0);
         error = "denda Gagal";
+
      }
 
     }
@@ -330,7 +336,7 @@ $(document).ready(function(){
                         url:"store-pengembalian",
                         type:'POST',
                         headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') },
-                        data:{gallery:gallery_peminjaman,member:$('#id_member').val(),peminjaman:id_peminjaman,tgl:$('#tgl').val(),a:jml, denda:denda},
+                        data:{gallery:gallery_peminjaman,member:$('#id_member').val(),peminjaman:id_peminjaman,tgl:$('#tgl').val(),a:jml,stok:stok_buku, denda:denda},
                         success: function (data) {
                            swal ( "Berhasil" ,  "Berhasil kk" ,  "success" );
                            location.reload();

@@ -26,7 +26,7 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                Transaksi Pengembalian Buku
+                                DIDIE TEH TRANSAKSI
                             </h2>
                             <ul class="header-dropdown m-r--5">
                                 <li>
@@ -51,7 +51,7 @@
                                 <div class="form-group form-float ">
                                         <div class="form-line">
                                             <input type="text" class="form-control" name="id_member" id="id_member" >
-                                            <label class="form-label">Id Member</label>
+                                            <label class="form-label">ID NA SI MEMBER</label>
                                         </div>
                                 </div>
                                
@@ -77,12 +77,12 @@
                                         <div class="form-line">
                                             <input type="text" class="form-control" name="tgl_pinjam" id="tgl_pinjam" value=" "  readonly>
                                             <label class="form-label">Tanggal Pinjam</label>
-                                        </div>
+                                        </div>    
                                 </div>
                                  <div class="form-group form-float ">
                                         <div class="form-line">
                                             <input type="text" class="form-control" name="tgl" id="tgl" value="<?php echo date('Y-m-d')?>" readonly>
-                                            <label class="form-label">Tanggal </label>
+                                            <label class="form-label">Tanggal zaman Now</label>
                                         </div>
                                 </div>
                                  <div class="form-group form-float ">

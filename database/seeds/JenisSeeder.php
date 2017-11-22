@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\M_Jenis;
 
 class JenisSeeder extends Seeder
 {
@@ -11,6 +12,14 @@ class JenisSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $jenis = new M_Jenis();
+        $jenis->jenis = 'Buku Pelajaran';
+        $jenis->save();
+        
+       	$jenis = new M_Jenis();
+        $jenis->jenis = 'Novel';
+        $jenis->save();
+
+
     }
 }

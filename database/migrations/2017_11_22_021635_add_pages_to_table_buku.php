@@ -14,7 +14,7 @@ class AddPagesToTableBuku extends Migration
     public function up()
     {
         Schema::table('buku', function (Blueprint $table) {
-            $table->string('page')->default(0);
+            $table->string('page')->nullable();
         });
     }
 

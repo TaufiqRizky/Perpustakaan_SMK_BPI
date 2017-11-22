@@ -14,6 +14,9 @@ class User extends Authenticatable
      *
      * @var array
      */
+
+    const DEFAULT_PASSWORD = '12345678';
+    
     protected $fillable = [
         'name', 'email', 'password',
     ];

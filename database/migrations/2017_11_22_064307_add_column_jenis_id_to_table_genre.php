@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddPublicationyearToTableBuku extends Migration
+class AddColumnJenisIdToTableGenre extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddPublicationyearToTableBuku extends Migration
      */
     public function up()
     {
-        Schema::table('buku', function (Blueprint $table) {
-            $table->string('publicationyear')->nullable();
+        Schema::table('genre', function (Blueprint $table) {
+            $table->integer('jenis_id')->after('id')->nullable();
         });
     }
 
@@ -25,8 +25,8 @@ class AddPublicationyearToTableBuku extends Migration
      */
     public function down()
     {
-        Schema::table('buku', function (Blueprint $table) {
-            $table->dropColumn('publicationyear');
+        Schema::table('genre', function (Blueprint $table) {
+            $table->dropColumn('jenis_id');
         });
     }
 }

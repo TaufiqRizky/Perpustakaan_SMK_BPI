@@ -68,7 +68,7 @@
                                         <div class="input-group">
                                             <label class="input-group-btn">
                                                 <span class="btn btn-primary">
-                                                    Set as Cover <input type="file" class="inputfoto" accept="image/png, image/jpeg, image/gif, image/ico" name="photo" id="logo" style="display: none;" multiple>
+                                                    Choose Photo <input type="file" class="inputfoto" accept="image/png, image/jpeg, image/gif, image/ico" name="photo" id="logo" style="display: none;" multiple>
                                                 </span>
                                             </label>
                                             <input type="text" class="form-control" readonly>

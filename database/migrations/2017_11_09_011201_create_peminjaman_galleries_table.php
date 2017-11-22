@@ -22,6 +22,7 @@ class CreatePeminjamanGalleriesTable extends Migration
         });
     }
 
+
     /**
      * Reverse the migrations.
      *

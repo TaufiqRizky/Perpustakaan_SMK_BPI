@@ -21,6 +21,8 @@ class PengembalianGalleries extends Migration
         });
     }
 
+
+
     /**
      * Reverse the migrations.
      *

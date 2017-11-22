@@ -82,7 +82,7 @@
                                  <div class="form-group form-float ">
                                         <div class="form-line">
                                             <input type="text" class="form-control" name="tgl" id="tgl" value="<?php echo date('Y-m-d')?>" readonly>
-                                            <label class="form-label">Tanggal zaman Now</label>
+                                            <label class="form-label">Tanggal </label>
                                         </div>
                                 </div>
                                  <div class="form-group form-float ">

@@ -68,8 +68,9 @@ Route::delete('genre/{id}','admin@destroy_genre');
         Route::delete('peminjaman/{id}/delete', array('as' => 'admin-delete-peminjaman', 'uses' => 'PeminjamanController@destroy'));
         Route::get('datatables', array('as' => 'datatables-peminjaman', 'uses' => 'PeminjamanController@datatables'));
 
- // route pengembalian
+  // route pengembalian
         Route::get('transaksi/pengembalian','PengembalianController@index');
         Route::post('transaksi/store-pengembalian','PengembalianController@store');
         Route::get('transaksi/get-member/{id}','PengembalianController@get_member');
         Route::get('transaksi/get-peminjaman/{id}','PengembalianController@get_peminjaman');
+

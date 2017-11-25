@@ -395,37 +395,24 @@ function showPromptMessage() {
 }
 
 function update_buku(id) {
-    swal({
-        title: "Barcode",
-        text: "Please Scan Barcode:",
-        type: "input",
-        showCancelButton: true,
-        closeOnConfirm: false,
-        animation: "slide-from-top",
-        inputPlaceholder: "Click And Scan",
-        inputId: "barcode"
-    }, function (inputValue) {
-        if (inputValue === false) return false;
-        if (inputValue === "") {
-            swal.showInputError("You need to scan barcode first!"); return false
-        }
+    
 
         $.ajax({
             url:"/buku/"+id,
-            type:'put',
+            type:'post',
             headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') },
-            data:{barcode:inputValue, stok:$("#stok").val(), judul:$("#judul").val(), pengarang:$("#pengarang").val(), penerbit:$("#penerbit").val(), jenis:$("#jenis").val(), genre:$("#genre").val(), sinopsis:$("#sinopsis").val()},
+            data:{ stok:$("#stok").val(), judul:$("#judul").val(), pengarang:$("#pengarang").val(), penerbit:$("#penerbit").val(), jenis:$("#jenis").val(), genre:$("#genre").val(), sinopsis:$("#sinopsis").val()},
             success: function (data) {
                 swal("Nice!", "", "success");
 
-
+                window.location.href="/buku"; 
                 },
                 error: function (data) {
                      swal("Gagal!", "", "error");
                 }
         });
         
-    });
+   
 }
 
 function showAjaxLoaderMessage() {

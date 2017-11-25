@@ -28,7 +28,7 @@ class KaryawanController extends Controller
           if ($photo->isValid()) {
             $fileName = date('Y_m_d_His').'_'.$photo->getClientOriginalName();
             
-            $photo->move(public_path('storage/karyawan'), $fileName)->resize(200, 200);
+            $photo->move(public_path('storage/karyawan'), $fileName);
 
       $karyawan->photo = $fileName;
           }

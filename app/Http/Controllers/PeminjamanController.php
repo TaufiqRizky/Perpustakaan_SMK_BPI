@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\Peminjaman;
 use App\peminjamanGallery;
 use Yajra\Datatables\Facades\Datatables;
@@ -34,6 +34,7 @@ class PeminjamanController extends Controller
 
     public function store(Request $data)
     {
+
         $pinjam = new Peminjaman;
         $pinjam->member_barcode= $data['member_barcode'];
         $pinjam->tgl_pinjam    = $data['tgl_pinjam'];
@@ -42,8 +43,17 @@ class PeminjamanController extends Controller
         for ($i=0; $i < count($data->buku_barcode) ; $i++) { 
             $pinjamGallery = peminjamanGallery::create([
                 'peminjaman_id' => $pinjam->id,
-                'buku_barcode' => $data->buku_barcode[$i]
+                'buku_barcode' => $data->buku_barcode[$i],
+                'status' => 'dipinjam'
             ]);
+            $buku= DB::table('buku')->where('barcode', '=', $data->buku_barcode[$i])->first();
+            $stok=(int)$buku->stok;
+            $jml=$stok-1;
+
+            DB::table('buku')
+            ->where('barcode', $buku->barcode)
+            ->update(['stok' => $jml]);
+
         }
         return redirect()->route('admin-index-peminjaman');
     }

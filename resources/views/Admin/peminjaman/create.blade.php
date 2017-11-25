@@ -34,7 +34,7 @@
                         </div>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input type="text" class="form-control" name="member_name" id="member_name" required>
+                                <input type="text" class="form-control" name="member_name" id="member_name" value=" " readonly required>
                                 <label class="form-label">Member Name</label>
                             </div>
                         </div>
@@ -85,4 +85,42 @@
     </div>
 
 @endsection
+@section('js')
+    <script type="text/javascript">
+         $(document).on("keyup", "#member_barcode", function(){
+            var id=$(this).val();
+            if ($(this).val().length == 10) {
+                var loading = $(this).parents('.card').waitMe({
+                    effect: 'stretch',
+                    text: 'Wait for Ajax...',
+                    bg: 'rgba(255,255,255,0.90)',
+                    color: '#555'
+                });
+            }
 
+            
+            
+                $.ajax({
+                    url:"../transaksi/get-member/"+$(this).val(),
+                    type:'GET',
+                    headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') },
+                    data:{id:$(this).val()},
+                    success: function (data) {
+                       var r = $.parseJSON(data);
+                       if (r != '') {
+                      
+                        $('#member_name').val(r[0]["nama"]); 
+                        loading.waitMe('hide');
+                        
+                       }
+
+                        },
+                        error: function (data) {
+                             console.log('error');
+                        }
+                });
+
+                
+            });
+    </script>
+@endsection

@@ -26,7 +26,7 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                DIDIE TEH TRANSAKSI
+                                Transaksi Pengembalian
                             </h2>
                             <ul class="header-dropdown m-r--5">
                                 <li>
@@ -51,7 +51,7 @@
                                 <div class="form-group form-float ">
                                         <div class="form-line">
                                             <input type="text" class="form-control" name="id_member" id="id_member" >
-                                            <label class="form-label">ID NA SI MEMBER</label>
+                                            <label class="form-label">Id Member</label>
                                         </div>
                                 </div>
                                
@@ -309,18 +309,12 @@ $(document).ready(function(){
                                      console.log(gallery_peminjaman);
                                      $(this).val(null);
 
-                                
-                           
                         }
                        
                         break;
                       }
                     
                     }
-           
-
-          
-               
 
                 }
 

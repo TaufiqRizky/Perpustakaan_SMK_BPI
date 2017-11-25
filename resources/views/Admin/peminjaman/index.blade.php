@@ -9,7 +9,7 @@
                         <a class="btn btn-default" href="" title="Refresh"><i class="material-icons">autorenew</i></a>
                         <a class="btn btn-primary" href="{{ route('admin-create-peminjaman') }}" title=""><i class="material-icons">add</i></a>
                     </div>
-                    <h2>Data Master Karyawan</h2>
+                    <h2>Data Peminjaman</h2>
                 </div>
                 <div class="body table-responsive">
                     <table id="peminjaman-table" class="table table-hover table-responsive">

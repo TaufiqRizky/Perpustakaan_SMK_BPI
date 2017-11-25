@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Peminjaman;
 use App\peminjamanGallery;
-use Yajra\Datatables\Facades\Datatables;
 
 
 
@@ -22,6 +21,7 @@ class PeminjamanController extends Controller
         $data['pinjam']= DB::table('peminjaman')
                         ->select('peminjaman.*','member.nama as name')
                         ->join('member','peminjaman.member_barcode','=','member.barcode')
+                        ->where('status','=','1')
                         ->orderBy('peminjaman.updated_at','desc')
                         ->get();
     	return view('admin.peminjaman.index',$data);
@@ -35,27 +35,53 @@ class PeminjamanController extends Controller
     public function store(Request $data)
     {
 
-        $pinjam = new Peminjaman;
-        $pinjam->member_barcode= $data['member_barcode'];
-        $pinjam->tgl_pinjam    = $data['tgl_pinjam'];
-        $pinjam->tgl_kembali   = $data['tgl_kembali'];
-        $pinjam->save();
-        for ($i=0; $i < count($data->buku_barcode) ; $i++) { 
-            $pinjamGallery = peminjamanGallery::create([
-                'peminjaman_id' => $pinjam->id,
-                'buku_barcode' => $data->buku_barcode[$i],
-                'status' => 'dipinjam'
-            ]);
-            $buku= DB::table('buku')->where('barcode', '=', $data->buku_barcode[$i])->first();
-            $stok=(int)$buku->stok;
-            $jml=$stok-1;
+        $error = peminjaman::where('member_barcode',$data['member_barcode'])->where('status','1')->get();
 
-            DB::table('buku')
-            ->where('barcode', $buku->barcode)
-            ->update(['stok' => $jml]);
+        if(count($error) > 0){
+            $data->session()->flash('alert-danger', 'Member '.$data['member_name'].' dengan Barcode '.$data['member_barcode'].' sedang meminjam buku!');
+            return redirect()->route('admin-create-peminjaman');
+        }else{
+            $pinjam = new Peminjaman;
+            $pinjam->member_barcode= $data['member_barcode'];
+            $pinjam->tgl_pinjam    = $data['tgl_pinjam'];
+            $pinjam->tgl_kembali   = $data['tgl_kembali'];
+            $pinjam->status        = '1';
+            $pinjam->save();
+            
+            if(empty($data->buku_barcode[1])){
+                $pinjamGallery = peminjamanGallery::create([
+                    'peminjaman_id' => $pinjam->id,
+                    'buku_barcode' => $data->buku_barcode[0],
+                    'status' => 'dipinjam',
+                ]);
 
+                $buku= DB::table('buku')->where('barcode', '=', $data->buku_barcode[0])->first();
+                $stok=(int)$buku->stok;
+                $jml=$stok-1;
+
+                DB::table('buku')
+                    ->where('barcode', $buku->barcode)
+                    ->update(['stok' => $jml]);
+            }else{
+                for ($i=0; $i < count($data->buku_barcode) ; $i++) {
+                    $pinjamGallery = peminjamanGallery::create([
+                        'peminjaman_id' => $pinjam->id,
+                        'buku_barcode' => $data->buku_barcode[$i],
+                        'status' => 'dipinjam',
+                    ]);
+                    $buku= DB::table('buku')->where('barcode', '=', $data->buku_barcode[$i])->first();
+                    $stok=(int)$buku->stok;
+                    $jml=$stok-1;
+
+                    DB::table('buku')
+                    ->where('barcode', $buku->barcode)
+                    ->update(['stok' => $jml]);
+
+                }
+            }
+            $data->session()->flash('alert-success', 'Member '.$data['member_name'].' dengan Barcode '.$data['member_barcode'].' Berhasil Meminjam Buku');
+            return redirect()->route('admin-index-peminjaman');  
         }
-        return redirect()->route('admin-index-peminjaman');
     }
 
    	public static function datatables(Request $request)

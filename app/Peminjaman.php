@@ -9,7 +9,7 @@ use App\PeminjamanGallery;
 class Peminjaman extends Model
 {
     protected $table = 'peminjaman';
-
+    protected $fillable = ['member_barcode','tgl_pinjam','tgl_kembali','status'];
     public function member(){
         return $this->belongsTo('App\member','member_barcode');
     }

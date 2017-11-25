@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Pengembalian;
 use App\denda;
+use App\Peminjaman;
 use App\PengembalianGallery;
 
 class PengembalianController extends Controller
@@ -29,6 +30,7 @@ class PengembalianController extends Controller
 	  	$pinjam=DB::table('peminjaman')
       ->join('peminjaman_galleries','peminjaman.id','=','peminjaman_galleries.peminjaman_id')
       ->join('buku','peminjaman_galleries.buku_barcode','=','buku.barcode')->where('peminjaman.member_barcode', '=', $id)
+      ->where('peminjaman_galleries.status','dipinjam')
      ->get();
       return $pinjam->toJson();
 	  }
@@ -41,8 +43,10 @@ class PengembalianController extends Controller
         $Pengembalian->member_barcode= $data['member'];
         $Pengembalian->id_peminjaman = $data['peminjaman'];
         $Pengembalian->tgl_dikembalikan   = $data['tgl'];
-       
         $Pengembalian->save();
+        Peminjaman::where('member_barcode',$data['member'])
+                    ->where('status','1')
+                    ->update(['status' => '0']);
       
         for ($i=0; $i < $j ; $i++) { 
             $PengembalianGallery = PengembalianGallery::create([
@@ -59,10 +63,11 @@ class PengembalianController extends Controller
             ->update(['status' => 'dikembalikan']);
 
         }
+
+
         $denda = new denda;
         $denda->total_denda = $data['denda'];
         $denda->pengembalian_id = $Pengembalian->id;
  		$denda->save();
-       
 	  }
 }

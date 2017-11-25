@@ -11,6 +11,11 @@
                     </div>
                     <h2>Data Peminjaman</h2>
                 </div>
+                @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+                    @if(Session::has('alert-' . $msg))
+                        <p class="alert alert-{{ $msg }}" style="text-align: center;">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+                    @endif
+                @endforeach
                 <div class="body table-responsive">
                     <table id="peminjaman-table" class="table table-hover table-responsive">
                         <thead>
@@ -33,10 +38,6 @@
                                 <td>{{ $value->created_at }}</td>
                                 <td>          
                                     <a class="btn btn-info waves-effect" data-type="" href="{{ url('peminjaman/'.$value->id.'/show') }}" ><i class="material-icons">remove_red_eye</i></a>
-
-                                    <a class="btn btn-warning waves-effect" data-type="" href="{{ url('peminjaman/'.$value->id.'/edit') }}" ><i class="material-icons">edit</i></a>
-                                        
-                                    <button class="btn btn-danger waves-effect" data-id="{{$value->id}}" data-type="D_karyawan"><i class="material-icons">delete</i></button>
                                 </td>
                             </tr>        
                         @endforeach

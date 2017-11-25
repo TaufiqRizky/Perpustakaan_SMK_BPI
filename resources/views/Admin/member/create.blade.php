@@ -59,11 +59,17 @@
                                         <label class="form-label">Kelas</label>
                                     </div>
                                 </div>
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <input type="text" class="form-control" name="unit" id="unit" required>
-                                        <label class="form-label">Unit</label>
-                                    </div>
+                                <div class="row clearfix">
+                                <div class="col-sm-12">
+                                    <select class="form-control show-tick" name="unit" id="unit">
+                                        <option value="">-- Select Unit --</option>
+                                        <option value="SMA">SMA</option>
+                                        <option value="SMK">SMK</option>
+                                        <div class="Ojenis">
+                                            
+                                        </div>
+                                    </select>
+                                </div>
                                 </div>
                                 <div class="form-group form-float">
                                     <div class="form-line">

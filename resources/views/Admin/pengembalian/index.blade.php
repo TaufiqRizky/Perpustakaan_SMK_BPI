@@ -46,75 +46,75 @@
                                 </li>
                             </ul>
                         </div>
+                        @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+                            @if(Session::has('alert-' . $msg))
+                                <p class="alert alert-{{ $msg }}" style="text-align: center;">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+                            @endif
+                        @endforeach
                         <div class="body ">
-                           
-                                <div class="form-group form-float ">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" name="id_member" id="id_member" >
-                                            <label class="form-label">Id Member</label>
-                                        </div>
+                            <div class="form-group form-float ">
+                                    <div class="form-line">
+                                        <input type="text" class="form-control" name="id_member" id="id_member" >
+                                        <label class="form-label">Barcode Member</label>
+                                    </div>
+                            </div>   
+                            <div class="form-group form-float n_member">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" name="n_member" id="n_member" value=" " readonly>
+                                    <label class="form-label">Nama Member</label>
                                 </div>
-                               
-                                <div class="form-group form-float n_member">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" name="n_member" id="n_member" value=" " readonly>
-                                            <label class="form-label">Nama Member</label>
-                                        </div>
+                            </div>
+                            <div class="form-group form-float alamat">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" name="alamat" id="alamat" value=" " readonly>
+                                    <label class="form-label">Alamat Member</label>
                                 </div>
-                                <div class="form-group form-float alamat">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" name="alamat" id="alamat" value=" " readonly>
-                                            <label class="form-label">Alamat Member</label>
-                                        </div>
+                            </div>
+                            <div class="form-group form-float unit">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" name="unit" id="unit" value=" " readonly hidden>
+                                    <label class="form-label">Unit</label>
                                 </div>
-                                <div class="form-group form-float unit">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" name="unit" id="unit" value=" " readonly hidden>
-                                            <label class="form-label">Unit</label>
-                                        </div>
+                            </div>
+                            <div class="form-group form-float tgl_pinjam">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" name="tgl_pinjam" id="tgl_pinjam" value=" "  readonly>
+                                    <label class="form-label">Tanggal Pinjam</label>
+                                </div>    
+                            </div>
+                             <div class="form-group form-float ">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" name="tgl" id="tgl" value="<?php echo date('Y-m-d')?>" readonly>
+                                    <label class="form-label">Tanggal </label>
                                 </div>
-                                 <div class="form-group form-float tgl_pinjam">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" name="tgl_pinjam" id="tgl_pinjam" value=" "  readonly>
-                                            <label class="form-label">Tanggal Pinjam</label>
-                                        </div>    
+                            </div>
+                            <div class="form-group form-float ">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" name="total_denda" id="total_denda" value=" ">
+                                    <label class="form-label">Total Denda</label>
                                 </div>
-                                 <div class="form-group form-float ">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" name="tgl" id="tgl" value="<?php echo date('Y-m-d')?>" readonly>
-                                            <label class="form-label">Tanggal </label>
-                                        </div>
+                            </div>
+                            <br><br>
+                            <h5>Daftar Buku Yang di Pinjam</h5>
+                            <table border="1" class="table table-bordered ">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Barcode</th>
+                                        <th>Judul</th>                                 
+                                    </tr>
+                                </thead>
+                                <tbody id="table_peminjaman">            
+                                </tbody>
+                            </table>
+                            <div class="form-group form-float ">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" name="Scan" id="scan"  >
+                                    <label class="form-label">Scan Buku Yang di Pinjam</label>
                                 </div>
-                                 <div class="form-group form-float ">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" name="total_denda" id="total_denda" value=" ">
-                                            <label class="form-label">Total Denda</label>
-                                        </div>
-                                </div>
-                                <br><br>
-                                <h5>Daftar Buku Yang di Pinjam</h5>
-                                <table border="1" class="table table-bordered ">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Barcode</th>
-                                            <th>Judul</th>
-                                         
-                                        </tr>
-                                    </thead>
-                                    <tbody id="table_peminjaman">
-                                        
-                                    </tbody>
-                                </table>
-                                 <div class="form-group form-float ">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" name="Scan" id="scan"  >
-                                            <label class="form-label">Scan Buku Yang di Pinjam</label>
-                                        </div>
-                                </div>
-                                <br>
-
-                                <button class="btn btn-primary waves-effect btn-store">Simpan</button>
+                            </div>
+                            <br>
+                            <button class="btn btn-primary waves-effect btn-store">Simpan</button>
                         </div>
                     </div>
                 </div>
@@ -323,25 +323,20 @@ $(document).ready(function(){
 
     $(document).on("click", ".btn-store", function(){
         if ($('#id_member').val() != '') {
-            var r = confirm("Simpan Data?");
             var jml=Object.keys(gallery_peminjaman).length;
-            if (r) {
-                     $.ajax({
-                        url:"store-pengembalian",
-                        type:'POST',
-                        headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') },
-                        data:{gallery:gallery_peminjaman,member:$('#id_member').val(),peminjaman:id_peminjaman,tgl:$('#tgl').val(),a:jml,stok:stok_buku, denda:denda},
-                        success: function (data) {
-                           swal ( "Berhasil" ,  "Berhasil kk" ,  "success" );
-                           location.reload();
-                            },
-                            error: function (data) {
-                                 swal ( "Eror 500" ,  "Error input pengembalian !!" ,  "error" );
-                            }
-                    });
-            }
-            
-             
+            $.ajax({
+            url:"{{ route('admin-post-pengembalian') }}",
+            type:'POST',
+            headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') },
+            data:{gallery:gallery_peminjaman,member:$('#id_member').val(),peminjaman:id_peminjaman,tgl:$('#tgl').val(),a:jml,stok:stok_buku, denda:denda},
+            success: function (data) {
+                        swal ( "Berhasil" ,  "Berhasil kk" ,  "success" );
+                        location.reload();
+                    },
+            error: function (data) {
+                        swal ( "Eror 500" ,  "Error input pengembalian !!" ,  "error" );
+                    }
+            });
         }else{
              swal ( "Data Kosong !!" ,  "Pastikan semua diisi" ,  "warning" );
         }

@@ -8,8 +8,7 @@ class PeminjamanGallery extends Model
 {
     protected $table = 'peminjaman_galleries';
     // MODIFIED BY ANNUR 26-07-2017
-    protected $fillable = ['peminjaman_id','buku_barcode'];
-
+    protected $fillable = ['peminjaman_id','buku_barcode','status'];
     public function peminjaman(){
         return $this->belongsTo('App\Peminjaman', 'id');
     }

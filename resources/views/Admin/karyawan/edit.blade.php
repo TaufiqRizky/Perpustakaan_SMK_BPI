@@ -36,14 +36,14 @@
                                 </div>
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="jabatan" id="jabatan" value="{{ $karyawan->jabatan }}" required>
-                                        <label class="form-label">Jabatan</label>
+                                        <input type="text" class="form-control" name="tlp" id="tlp" value="{{ $karyawan->tlp }}" required>
+                                        <label class="form-label">No. Telepon</label>
                                     </div>
                                 </div>
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="tlp" id="tlp" value="{{ $karyawan->tlp }}" required>
-                                        <label class="form-label">No. Telepon</label>
+                                        <input type="text" class="form-control" name="jabatan" id="jabatan" value="{{ $karyawan->jabatan }}" required>
+                                        <label class="form-label">Jabatan</label>
                                     </div>
                                 </div>
                                 <div class="form-group form-float">
@@ -51,11 +51,6 @@
                                         <textarea name="alamat" cols="30" rows="5" class="form-control no-resize" id="alamat" >{{ $karyawan->alamat }} </textarea>
                                         <label class="form-label">Alamat</label>
                                     </div>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <input type="checkbox" id="checkbox" name="checkbox">
-                                    <label for="checkbox">Saya Bukan Robot</label>
                                 </div>
                                 <button class="btn btn-primary waves-effect" >Update</button>
                         

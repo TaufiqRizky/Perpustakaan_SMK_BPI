@@ -29,6 +29,11 @@
                                 </li>
                             </ul>
                         </div>
+                        @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+                            @if(Session::has('alert-' . $msg))
+                                <p class="alert alert-{{ $msg }}" style="text-align: center;">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+                            @endif
+                        @endforeach
                         <div class="body table-responsive">
                             <table class="table table-bordered table-hovered table-striped js-sweetalert" id="member">
                                 <thead>

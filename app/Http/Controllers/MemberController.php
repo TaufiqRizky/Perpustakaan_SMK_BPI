@@ -12,7 +12,8 @@ class MemberController extends Controller
     }
 
     public function create(){
-   		return view('admin.member.create');
+      $data['unit']= \App\member::all();
+   		return view('admin.member.create',$data);
    }
 
    public function store(Request $request){
@@ -37,6 +38,7 @@ class MemberController extends Controller
           }
       }      
    		$member->save();
+      $request->session()->flash('alert-success', 'Berhasil Menambah '.$request->nama.' Sebagai Member');
    		return redirect('/member');
    		
    }
@@ -57,6 +59,7 @@ class MemberController extends Controller
    }
 
    public function edit($id){
+      $data['unit']= \App\member::all();
       $data['member'] = \App\member::find($id);
       return view('admin.member.edit',$data);
    }

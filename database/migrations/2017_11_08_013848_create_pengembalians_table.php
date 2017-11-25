@@ -15,7 +15,7 @@ class CreatePengembaliansTable extends Migration
     {
         Schema::create('pengembalian', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('member_barcode')->unique()->nullable();
+            $table->string('member_barcode')->nullable();
              $table->foreign('member_barcode')
                   ->references('barcode')
                   ->on('member')

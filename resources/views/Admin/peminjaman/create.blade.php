@@ -23,6 +23,11 @@
                         </li>
                     </ul>
                 </div>
+                @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+                    @if(Session::has('alert-' . $msg))
+                        <p class="alert alert-{{ $msg }}" style="text-align: center;">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+                    @endif
+                @endforeach
                 <div class="body">
                     <form action="{{ route('admin-post-peminjaman') }}" enctype="multipart/form-data" method="POST">
                         {!! csrf_field() !!}
@@ -40,11 +45,8 @@
                         </div>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input type="text" class="form-control" name="buku_barcode[]" multiple="multiple" id="buku_barcode" required>
+                                <input type="text" class="form-control" name="buku_barcode[]" multiple="multiple" id="buku_barcode" oninput="addInput()" required>
                                 <label class="form-label">Barcode Buku</label>
-                            </div>
-                            <div class="pull-right"> 
-                                <a class="btn btn-primary" href="#" onclick="addInput()" id="add"><i class="material-icons">add</i></a>
                             </div>
                         </div>
                         <script type="text/javascript">
@@ -53,8 +55,8 @@
                             function addInput(){
                                 var boxName="buku_barcode[]"; 
                                 
-                                if (countBox++ <= 3) {
-                                    document.getElementById('responce').innerHTML +='<div class="form-group form-float"><div class="form-line"><input type="text" class="form-control" name="'+boxName+'" id="'+boxName+'" /><label class="form-label"></label></div></div>';
+                                if (countBox++ <= 2) {
+                                    document.getElementById('responce').innerHTML +='<div class="form-group form-float"><div class="form-line"><input type="text" class="form-control" name="'+boxName+'" id="'+boxName+'" oninput="addInput()" /><label class="form-label"></label></div></div>';
                                 }else{
                                     document.getElementById('add').disabled=true;
                                 }
@@ -91,10 +93,10 @@
             var id=$(this).val();
             if ($(this).val().length == 10) {
                 var loading = $(this).parents('.card').waitMe({
-                    effect: 'stretch',
-                    text: 'Wait for Ajax...',
+                    effect: 'win8_linear',
+                    text: 'Please Wait...',
                     bg: 'rgba(255,255,255,0.90)',
-                    color: '#555'
+                    color: '#1abc9c'
                 });
             }
 

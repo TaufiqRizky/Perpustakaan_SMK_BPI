@@ -36,13 +36,20 @@
                                 </div>
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="nama" id="nama" required>
+                                        <input type="text" class="form-control" name="nama" id="nama" pattern="[A-z]{1,30}" required>
                                         <label class="form-label">Nama</label>
                                     </div>
                                 </div>
+                                <p>
+                                    <input name="jk" type="radio" id="jk" value="L">
+                                    <label for="jk">Laki-laki</label>
+
+                                    <input name="jk" type="radio" id="jkp" value="P">
+                                    <label for="jkp">Perempuan</label>
+                                </p>
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="tlp" id="tlp" required>
+                                        <input type="text" class="form-control" name="tlp" id="tlp" pattern="[0-9]{1,13}" required>
                                         <label class="form-label">No. Telepon</label>
                                     </div>
                                 </div>
@@ -128,6 +135,18 @@
             });
         });
     });
+</script>
+<script type="text/javascript">
+    var nama = document.getElementById('nama');
+    var tlp = document.getElementById('tlp');
+
+    nama.oninvalid = function(event) {
+        event.target.setCustomValidity('Maksimal 30 karakter!');
+    }
+
+    tlp.oninvalid = function(event) {
+        event.target.setCustomValidity('Harus angka dan Maksimal 13 karakter!');
+    }
 </script>
 
 @endsection

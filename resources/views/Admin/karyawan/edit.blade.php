@@ -34,6 +34,13 @@
                                         <label class="form-label">Nama</label>
                                     </div>
                                 </div>
+                                <p>
+                                    <input name="jk" type="radio" id="jk" value="L">
+                                    <label for="jk">Laki-laki</label>
+
+                                    <input name="jk" type="radio" id="jkp" value="P">
+                                    <label for="jkp">Perempuan</label>
+                                </p>
                                 <div class="form-group form-float">
                                     <div class="form-line">
                                         <input type="text" class="form-control" name="tlp" id="tlp" value="{{ $karyawan->tlp }}" required>
@@ -46,6 +53,7 @@
                                         <label class="form-label">Jabatan</label>
                                     </div>
                                 </div>
+                                
                                 <div class="form-group form-float">
                                     <div class="form-line">
                                         <textarea name="alamat" cols="30" rows="5" class="form-control no-resize" id="alamat" >{{ $karyawan->alamat }} </textarea>

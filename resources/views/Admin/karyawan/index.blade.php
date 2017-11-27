@@ -36,6 +36,7 @@
                                         <th align="center">No</th>
                                         <th align="center">NIK</th>
                                         <th align="center">Nama</th>
+                                        <th align="center">Jenis Kelamin</th>
                                         <th align="center">Jabatan</th>
                                         <th align="center">No. Telepon</th>
                                         <th align="center">Alamat</th>
@@ -48,7 +49,9 @@
                                         <th scope="row">{{ $row+1 }}</th>
                                         <td><div id="nik{{ $row+1 }}"></div></td>
                                         <td>{{ str_limit($value->nama,30) }}</td>
+                                        <td>{{ $value->jk }}</td>
                                         <td>{{ str_limit($value->jabatan,20) }}</td>
+                                        
                                         <td>{{ $value->tlp }}</td>
                                         <td>{{ str_limit($value->alamat,50) }}</td>
                                         <td>

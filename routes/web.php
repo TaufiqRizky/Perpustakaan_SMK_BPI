@@ -25,7 +25,7 @@ Route::get('buku/create','Buku@create');
 Route::post('buku/store','Buku@store');
 Route::delete('buku/{id}','Buku@destroy');
 Route::get('/buku/{id}/edit','Buku@edit');
-Route::put('/buku/{id}', 'Buku@update');
+Route::post('/buku/{id}', 'Buku@update');
 //end buku
 
 //Jenis buku

@@ -123,10 +123,10 @@
                         </a>
                         <ul class="ml-menu">
                             <li class="{{ Request::path() ==  'karyawan' ? 'active' : ''  }}">
-                                <a href="{{ url('karyawan') }}">Lihat Data Karyawan</a>
+                                <a href="{{ url('karyawan') }}">Lihat Data</a>
                             </li>
                             <li class="{{ Request::path() ==  'karyawan/create' ? 'active' : ''  }}">
-                                <a href="{{ url('karyawan/create') }}">Tambah Data Karyawan</a>
+                                <a href="{{ url('karyawan/create') }}">Tambah Data</a>
                             </li>
                             
                         </ul>
@@ -139,10 +139,10 @@
                         </a>
                         <ul class="ml-menu">
                             <li class="{{ Request::path() ==  'member' ? 'active' : ''  }}">
-                                <a href="{{ url('member') }}">Lihat Data Member</a>
+                                <a href="{{ url('member') }}">Lihat Data</a>
                             </li>
                             <li class="{{ Request::path() ==  'member/create' ? 'active' : ''  }}">
-                                <a href="{{ url('member/create') }}">Tambah Data Member</a>
+                                <a href="{{ url('member/create') }}">Tambah Data</a>
                             </li>
                             
                         </ul>

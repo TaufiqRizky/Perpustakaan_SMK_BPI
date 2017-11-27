@@ -18,7 +18,8 @@ class KaryawanController extends Controller
    		
    		$karyawan= new \App\karyawan;
    		$karyawan->nik=$request->nik;
-   		$karyawan->nama=$request->nama;
+      $karyawan->nama=$request->nama;
+   		$karyawan->jk=$request->jk;
       $karyawan->alamat=$request->alamat;
       $karyawan->tlp=$request->tlp;
    		$karyawan->jabatan=$request->jabatan;
@@ -61,6 +62,7 @@ class KaryawanController extends Controller
    public function update(Request $request, $id){
       $karyawan = \App\karyawan::find($id);
       $karyawan->nama=$request->nama;
+      $karyawan->jk=$request->jk;
       $karyawan->alamat=$request->alamat;
       $karyawan->tlp=$request->tlp;
       $karyawan->jabatan=$request->jabatan;

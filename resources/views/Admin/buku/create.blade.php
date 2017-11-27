@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="block-header">
-    <h2>Tambah Buku</h2>
+    <h2>DIDIE KER NAMBAH KEN BUKU</h2>
 </div>
 
 <div class="row clearfix">

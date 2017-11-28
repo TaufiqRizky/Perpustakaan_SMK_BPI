@@ -15,7 +15,7 @@ class CreateTablePeminjaman extends Migration
     {
         Schema::create('peminjaman', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('member_barcode')->unique()->nullable();
+            $table->string('member_barcode')->nullable();
             $table->string('member_name')->nullable();
             $table->string('buku_barcode')->unique()->nullable();
             $table->string('buku_name')->nullable();

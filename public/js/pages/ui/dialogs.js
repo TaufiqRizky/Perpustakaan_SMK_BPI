@@ -34,6 +34,10 @@ $(function () {
 
             Delete_karyawan(id);
         }
+        else if (type === 'D_member') {
+
+            Delete_member(id);
+        }
         else if (type === 'with-custom-icon') {
             showWithCustomIconMessage();
         }
@@ -231,6 +235,41 @@ function Delete_karyawan(id) {
     });
 }
 
+function Delete_member(id) {
+    
+    swal({
+        title: "Are you sure?",
+        text: "You will not be able to recover this record!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel it!",
+        closeOnConfirm: false,
+        closeOnCancel: false
+    }, function (isConfirm) {
+        if (isConfirm) {
+            $.ajax({
+                url:"member/"+id,
+                type:'DELETE',
+                headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') },
+                data:{id:id},
+                success: function (data) {
+                   swal("Deleted!", "Your record has been deleted.", "success");
+                   $('.item'+id).fadeOut(1500, function(){ $(this).remove();});
+                   
+                    },
+                    error: function (data) {
+                         swal("Gagal!", "", "error");
+                    }
+            });
+             
+        } else {
+            swal("Cancelled", "Your record is safe :)", "error");
+        }
+    });
+}
+
 function showWithCustomIconMessage() {
     swal({
         title: "Sweet!",
@@ -356,37 +395,24 @@ function showPromptMessage() {
 }
 
 function update_buku(id) {
-    swal({
-        title: "Barcode",
-        text: "Please Scan Barcode:",
-        type: "input",
-        showCancelButton: true,
-        closeOnConfirm: false,
-        animation: "slide-from-top",
-        inputPlaceholder: "Click And Scan",
-        inputId: "barcode"
-    }, function (inputValue) {
-        if (inputValue === false) return false;
-        if (inputValue === "") {
-            swal.showInputError("You need to scan barcode first!"); return false
-        }
+    
 
         $.ajax({
             url:"/buku/"+id,
-            type:'put',
+            type:'post',
             headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') },
-            data:{barcode:inputValue, stok:$("#stok").val(), judul:$("#judul").val(), pengarang:$("#pengarang").val(), penerbit:$("#penerbit").val(), jenis:$("#jenis").val(), genre:$("#genre").val(), sinopsis:$("#sinopsis").val()},
+            data:{ stok:$("#stok").val(), judul:$("#judul").val(), pengarang:$("#pengarang").val(), penerbit:$("#penerbit").val(), jenis:$("#jenis").val(), genre:$("#genre").val(), sinopsis:$("#sinopsis").val()},
             success: function (data) {
                 swal("Nice!", "", "success");
 
-
+                window.location.href="/buku"; 
                 },
                 error: function (data) {
                      swal("Gagal!", "", "error");
                 }
         });
         
-    });
+   
 }
 
 function showAjaxLoaderMessage() {

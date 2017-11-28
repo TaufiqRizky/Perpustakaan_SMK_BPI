@@ -27,11 +27,7 @@
                         <div class="body">
                            <form action="{{ url('karyawan/store') }}" enctype="multipart/form-data" method="POST">
                             {!! csrf_field() !!}
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <input type="file" class="form-control" name="photo" id="photo" accept="image/*" required>
-                                    </div>
-                                </div>
+                                
                                 <div class="form-group form-float">
                                     <div class="form-line">
                                         <input type="text" class="form-control" name="nik" id="nik" required>
@@ -40,13 +36,20 @@
                                 </div>
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="nama" id="nama" required>
+                                        <input type="text" class="form-control" name="nama" id="nama" pattern="[A-z]{1,30}" required>
                                         <label class="form-label">Nama</label>
                                     </div>
                                 </div>
+                                <p>
+                                    <input name="jk" type="radio" id="jk" value="L">
+                                    <label for="jk">Laki-laki</label>
+
+                                    <input name="jk" type="radio" id="jkp" value="P">
+                                    <label for="jkp">Perempuan</label>
+                                </p>
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="tlp" id="tlp" required>
+                                        <input type="text" class="form-control" name="tlp" id="tlp" pattern="[0-9]{1,13}" required>
                                         <label class="form-label">No. Telepon</label>
                                     </div>
                                 </div>
@@ -63,16 +66,86 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="checkbox" id="checkbox" name="checkbox">
-                                    <label for="checkbox">Saya Bukan Robot</label>
+                                    <div class="col-sm-12" align="left">
+                                        <img width="120" class=" img-responsive preview" alt="Preview Photo">
+                                    </div>
+                                </div>
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <div class="input-group">
+                                            <label class="input-group-btn">
+                                                <span class="btn btn-primary">
+                                                    Choose Photo <input type="file" class="inputfoto" accept="image/png, image/jpeg, image/gif, image/ico" name="photo" id="logo" style="display: none;" multiple>
+                                                </span>
+                                            </label>
+                                            <input type="text" class="form-control" readonly>
+                                        </div>
+                                    </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary waves-effect" >Simpan</button>
-                        
+                            </form>
                         </div>
                     </div>
                 </div>
-                </form>
             </div>
 
+
+@endsection
+
+@section('js')
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        //preview logo
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('.preview').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $(".inputfoto").change(function(){
+            readURL(this);
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(function() {
+          // We can attach the `fileselect` event to all file inputs on the page
+        $(document).on('change', ':file', function() {
+            var input = $(this),
+                numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+            input.trigger('fileselect', [numFiles, label]);
+        });
+          // We can watch for our custom `fileselect` event like this
+        $(document).ready( function() {
+            $(':file').on('fileselect', function(event, numFiles, label) {
+
+                var input = $(this).parents('.input-group').find(':text'),
+                    log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+                if( input.length ) {
+                    input.val(log);
+                }
+            });
+        });
+    });
+</script>
+<script type="text/javascript">
+    var nama = document.getElementById('nama');
+    var tlp = document.getElementById('tlp');
+
+    nama.oninvalid = function(event) {
+        event.target.setCustomValidity('Maksimal 30 karakter!');
+    }
+
+    tlp.oninvalid = function(event) {
+        event.target.setCustomValidity('Harus angka dan Maksimal 13 karakter!');
+    }
+</script>
 
 @endsection

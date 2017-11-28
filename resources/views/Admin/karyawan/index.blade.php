@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+1516.10060  @extends('layouts.admin')
 
 @section('content')
 
@@ -36,6 +36,7 @@
                                         <th align="center">No</th>
                                         <th align="center">NIK</th>
                                         <th align="center">Nama</th>
+                                        <th align="center">Jenis Kelamin</th>
                                         <th align="center">Jabatan</th>
                                         <th align="center">No. Telepon</th>
                                         <th align="center">Alamat</th>
@@ -47,13 +48,15 @@
                                     <tr class="item{{$value->id}}">
                                         <th scope="row">{{ $row+1 }}</th>
                                         <td><div id="nik{{ $row+1 }}"></div></td>
-                                        <td>{{ $value->nama }}</td>
-                                        <td>{{ $value->jabatan }}</td>
+                                        <td>{{ str_limit($value->nama,30) }}</td>
+                                        <td>{{ $value->jk }}</td>
+                                        <td>{{ str_limit($value->jabatan,20) }}</td>
+                                        
                                         <td>{{ $value->tlp }}</td>
-                                        <td>{{ $value->alamat }}</td>
+                                        <td>{{ str_limit($value->alamat,50) }}</td>
                                         <td>
                                             
-                                            <a class="btn btn-success waves-effect" data-type="" href="{{ url('karyawan/'.$value->id.'/detail') }}" ><i class="material-icons">detail</i></a>
+                                            <a class="btn btn-success waves-effect" data-type="" href="{{ url('karyawan/'.$value->id.'/detail') }}" ><i class="material-icons">remove_red_eye</i></a>
 
                                             <a class="btn btn-primary waves-effect" data-type="" href="{{ url('karyawan/'.$value->id.'/edit') }}" ><i class="material-icons">edit</i></a>
                                         
@@ -79,7 +82,7 @@
 var table;
       $(document).ready(function(){
        @foreach($karyawan as $row => $value)
-       $("#nik{{ $row+1 }}").barcode("{{ $value->nik }}", "ean13", { barHeight:50});     
+       $("#nik{{ $row+1 }}").barcode("{{ $value->nik }}", "codabar", { barHeight:50});     
         @endforeach
    table = $('#karyawan').DataTable();
 });

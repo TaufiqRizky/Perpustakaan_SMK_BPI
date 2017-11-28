@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class M_genre extends Model
 {
     public $table = "genre";
-    protected $fillable = ['genre'];
+    protected $fillable = ['jenis_id','genre'];
 }

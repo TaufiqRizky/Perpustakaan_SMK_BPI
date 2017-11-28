@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 class KaryawanController extends Controller
 {
     public function __construct()
@@ -19,7 +18,8 @@ class KaryawanController extends Controller
    		
    		$karyawan= new \App\karyawan;
    		$karyawan->nik=$request->nik;
-   		$karyawan->nama=$request->nama;
+      $karyawan->nama=$request->nama;
+   		$karyawan->jk=$request->jk;
       $karyawan->alamat=$request->alamat;
       $karyawan->tlp=$request->tlp;
    		$karyawan->jabatan=$request->jabatan;
@@ -35,7 +35,7 @@ class KaryawanController extends Controller
           }
       }      
    		$karyawan->save();
-   		return redirect('/karyawan/create');
+   		return redirect('/karyawan');
    		
    }
 
@@ -62,6 +62,7 @@ class KaryawanController extends Controller
    public function update(Request $request, $id){
       $karyawan = \App\karyawan::find($id);
       $karyawan->nama=$request->nama;
+      $karyawan->jk=$request->jk;
       $karyawan->alamat=$request->alamat;
       $karyawan->tlp=$request->tlp;
       $karyawan->jabatan=$request->jabatan;

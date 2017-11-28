@@ -20,10 +20,10 @@ class Buku extends Migration
             $table->string('judul');
             $table->string('pengarang');
             $table->string('penerbit');
-            $table->string('genre');
-            $table->string('jenis');
-            $table->integer('stok');
-            $table->text('sinopsis');
+            $table->string('genre')->nullable();
+            $table->string('jenis')->nullable();
+            $table->integer('stok')->nullable();
+            $table->text('sinopsis')->nullable();
             $table->timestamps();
         });
     }

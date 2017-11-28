@@ -1,5 +1,13 @@
 @extends('layouts.admin')
 
+<style type="text/css" media="screen">
+    @media print {
+        .printableArea {
+            -webkit-print-color-adjust: exact !important;
+        }
+    }
+</style>
+
 @section('content')
 
 <div class="block-header">
@@ -26,7 +34,8 @@
                         </div>
                         <center>
                         <div class="body">
-                                    
+                            <div class="id-card">
+                                <div class="printableArea">
                                     <div style="height: 6.5cm; width: 6cm; background-image: url('/images/bg-2.jpg'); background-size: 100% 100%;  ">
                                         <br>
                                         <b><div style="color: white; font-size: 15px;">PERPUSTAKAAN BPI</div></b>
@@ -42,12 +51,15 @@
                                         <b><div style="color: #1E8BC3; font-size: 15px;">{{ $member->unit }}</div></b>
                                         <br>
                                         <div id="barcode"></div>
-                                    
                                     </div>
-                                
+                                    <br>
+                                    <br>
+                                </div>
+                                <a href="javascript:void(0);" id="printButton">Print</a> 
+                            </div>
                         </div>
-                        </center>
                     </div>
+                </center>
                 </div>
             </div>
 
@@ -59,10 +71,19 @@
 var table;
       $(document).ready(function(){
        
-       $("#barcode").barcode("{{ $member->barcode }}", "code128", { barHeight:15});     
+       $("#barcode").barcode("{{ $member->barcode }}", "code128", { barHeight:30});     
       
 });
 </script>
-
+<script type="text/javascript">
+    $(document).ready(function(){
+    $("#printButton").click(function(){
+        var mode = 'iframe'; //popup
+        var close = mode == "popup";
+        var options = { mode : mode, popClose : close};
+        $("div.printableArea").printArea( options );
+    });
+});
+</script>
 
 @endsection

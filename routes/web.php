@@ -63,7 +63,7 @@ Route::delete('genre/{id}','admin@destroy_genre');
         Route::get('peminjaman/create', array('as' => 'admin-create-peminjaman', 'uses' => 'PeminjamanController@create'));
         Route::post('peminjaman/store', array('as' => 'admin-post-peminjaman', 'uses' => 'PeminjamanController@store'));
         Route::get('peminjaman/{id}/edit', array('as' => 'admin-edit-peminjaman', 'uses' => 'PeminjamanController@edit'));
-        Route::get('peminjaman/{id}/show', array('as' => 'admin-show-peminjaman', 'uses' => 'PeminjamanController@show'));
+        Route::get('peminjaman/{id}/detail', array('as' => 'admin-detail-peminjaman', 'uses' => 'PeminjamanController@detail'));
         Route::post('peminjaman/{id}/update', array('as' => 'admin-update-peminjaman', 'uses' => 'PeminjamanController@update'));
         Route::delete('peminjaman/{id}/delete', array('as' => 'admin-delete-peminjaman', 'uses' => 'PeminjamanController@destroy'));
         Route::get('datatables/peminjaman', array('as' => 'datatables-peminjaman', 'uses' => 'PeminjamanController@datatables'));

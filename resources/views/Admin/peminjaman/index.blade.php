@@ -37,7 +37,7 @@
                                 <td>{{ $value->tgl_kembali }}</td>
                                 <td>{{ $value->created_at }}</td>
                                 <td>          
-                                    <a class="btn btn-info waves-effect" data-type="" href="{{ url('peminjaman/'.$value->id.'/show') }}" ><i class="material-icons">remove_red_eye</i></a>
+                                    <a class="btn btn-success waves-effect" style=" " href="{{ url('peminjaman/'.$value->id.'/detail') }}" ><i class="material-icons">remove_red_eye</i></a>
                                 </td>
                             </tr>        
                         @endforeach

@@ -57,16 +57,11 @@
                                         <td>{{ str_limit($value->alamat,50) }}</td>
                                         <td>{{ $value->created_at }}</td>
                                         <td>
-                                     
-                                                    <a class="btn btn-success waves-effect" style=" " href="{{ url('member/'.$value->id.'/detail') }}" ><i class="material-icons">remove_red_eye</i></a>
-                                              
-                                                  <a class="btn btn-primary waves-effect" style="" href="{{ url('member/'.$value->id.'/edit') }}" ><i class="material-icons">edit</i></a> 
-                                               
-                                                     <button class="btn btn-danger waves-effect" data-id="{{$value->id}}" data-type="D_member" style=" "><i class="material-icons">delete</i></button>
-                                        
+                                            <a class="btn btn-success waves-effect" style=" " href="{{ url('member/'.$value->id.'/detail') }}" ><i class="material-icons">remove_red_eye</i></a>
+                                            <a class="btn btn-primary waves-effect" style="" href="{{ url('member/'.$value->id.'/edit') }}" ><i class="material-icons">edit</i></a> 
+                                            <button class="btn btn-danger waves-effect" data-id="{{$value->id}}" data-type="D_member" style=" "><i class="material-icons">delete</i></button>  
                                         </td>
                                     </tr>
-                                  
                                @endforeach
                                 </tbody>
                             </table>

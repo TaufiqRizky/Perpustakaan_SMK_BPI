@@ -53,11 +53,16 @@
                                 </span>
                             @endif
                         </div>
-                        <div class="form-group form-float">
+                        <div class="form-group{{ $errors->has('buku_barcode.0') ? ' has-error' : '' }} form-float">
                             <div class="form-line">
                                 <input type="text" class="form-control" name="buku_barcode[]" multiple="multiple" id="buku_barcode" oninput="addInput()">
                                 <label class="form-label">Barcode Buku</label>
                             </div>
+                            @if($errors->has('buku_barcode.0'))
+                                <span class="help-block">
+                                    {{ $errors->first('buku_barcode.0') }}
+                                </span>
+                            @endif
                         </div>
                         <script type="text/javascript">
                             var countBox = 1;

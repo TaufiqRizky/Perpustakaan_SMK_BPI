@@ -83,11 +83,10 @@
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary waves-effect" >Simpan</button>
-                        
+                            </form>
                         </div>
                     </div>
                 </div>
-                </form>
             </div>
 
 

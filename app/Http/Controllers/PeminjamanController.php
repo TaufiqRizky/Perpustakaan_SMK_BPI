@@ -37,7 +37,8 @@ class PeminjamanController extends Controller
 
         $this->validate($data,[
             'member_barcode' => 'required',
-            'member_name' => 'required'
+            'member_name' => 'required',
+            'buku_barcode.0' => 'required'
         ]);
 
         $error = peminjaman::where('member_barcode',$data['member_barcode'])->where('status','1')->get();
@@ -87,6 +88,20 @@ class PeminjamanController extends Controller
             $data->session()->flash('alert-success', 'Member '.$data['member_name'].' dengan Barcode '.$data['member_barcode'].' Berhasil Meminjam Buku');
             return redirect()->route('admin-index-peminjaman');  
         }
+    }
+
+    public function detail($id){
+        $data['detail'] = DB::table('member')
+                        ->join('peminjaman','member.barcode','=','peminjaman.member_barcode')
+                        ->where('peminjaman.id',$id)
+                        ->select('*')
+                        ->first();
+        $data['buku'] = DB::table('peminjaman')
+                        ->join('peminjaman_galleries','peminjaman.id','=','peminjaman_galleries.peminjaman_id')
+                        ->join('buku','peminjaman_galleries.buku_barcode','=','buku.barcode')
+                        ->where('peminjaman.id',$id)
+                        ->get();
+        return view('admin.peminjaman.view',$data);
     }
 
    	public static function datatables(Request $request)

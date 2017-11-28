@@ -31,21 +31,31 @@
                 <div class="body">
                     <form action="{{ route('admin-post-peminjaman') }}" enctype="multipart/form-data" method="POST">
                         {!! csrf_field() !!}
-                        <div class="form-group form-float">
+                        <div class="form-group{{ $errors->has('member_barcode') ? ' has-error' : '' }} form-float">
                             <div class="form-line">
-                                <input type="text" class="form-control" name="member_barcode" id="member_barcode" required>
+                                <input type="text" class="form-control" name="member_barcode" id="member_barcode">
                                 <label class="form-label">Barcode Member</label>
                             </div>
+                            @if($errors->has('member_barcode'))
+                                <span class="help-block">
+                                    {{ $errors->first('member_barcode') }}
+                                </span>
+                            @endif
                         </div>
-                        <div class="form-group form-float">
+                        <div class="form-group{{ $errors->has('member_name') ? ' has-error' : '' }} form-float">
                             <div class="form-line">
-                                <input type="text" class="form-control" name="member_name" id="member_name" value=" " readonly required>
+                                <input type="text" class="form-control" name="member_name" id="member_name" readonly>
                                 <label class="form-label">Member Name</label>
                             </div>
+                            @if($errors->has('member_name'))
+                                <span class="help-block">
+                                    {{ $errors->first('member_name') }}
+                                </span>
+                            @endif
                         </div>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input type="text" class="form-control" name="buku_barcode[]" multiple="multiple" id="buku_barcode" oninput="addInput()" required>
+                                <input type="text" class="form-control" name="buku_barcode[]" multiple="multiple" id="buku_barcode" oninput="addInput()">
                                 <label class="form-label">Barcode Buku</label>
                             </div>
                         </div>

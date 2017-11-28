@@ -74,3 +74,6 @@ Route::delete('genre/{id}','admin@destroy_genre');
         Route::get('transaksi/get-member/{id}','PengembalianController@get_member');
         Route::get('transaksi/get-peminjaman/{id}','PengembalianController@get_peminjaman');
 
+  // report
+        Route::get('/report', 'ReportController@index')->name('report');
+

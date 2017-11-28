@@ -35,31 +35,27 @@
                             @endif
                         @endforeach
                         <div class="body table-responsive">
-                            <table class="table table-bordered table-hovered table-striped js-sweetalert" id="member">
+                            <table class="table table-hovered table-striped js-sweetalert" id="member">
                                 <thead>
                                     <tr>
-                                        <th align="center">No</th>
-                                        <th align="center">NIS</th>
-                                        <th align="center">Nama</th>
-                                        <th align="center">Jenis Kelamin</th>
-                                        <th align="center">Usia</th>
-                                        <th align="center">Kelas</th>
-                                        <th align="center">Unit</th>
-                                        <th align="center">Alamat</th>
-                                        <th align="center">Action</th>
+                                        <th align="center" width="14%">NIS</th>
+                                        <th align="center" width="18%">Nama</th>
+                                        <th align="center" width="8%">Kelas</th>
+                                        <th align="center" width="8%">Unit</th>
+                                        <th align="center" width="18%">Alamat</th>
+                                        <th align="center" width="14%">Created At</th>
+                                        <th align="center" width="18%">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($member as $row => $value)
                                     <tr class="item{{$value->id}}">
-                                        <th scope="row">{{ $row+1 }}</th>
                                         <td><div id="barcode{{ $row+1 }}"></div></td>
                                         <td>{{ str_limit($value->nama,30) }}</td>
-                                        <td>{{ $value->jk }}</td>
-                                        <td>{{ $value->usia }}</td>
                                         <td>{{ $value->kelas }}</td>
                                         <td>{{ $value->unit }}</td>
                                         <td>{{ str_limit($value->alamat,50) }}</td>
+                                        <td>{{ $value->created_at }}</td>
                                         <td>
                                      
                                                     <a class="btn btn-success waves-effect" style=" " href="{{ url('member/'.$value->id.'/detail') }}" ><i class="material-icons">remove_red_eye</i></a>

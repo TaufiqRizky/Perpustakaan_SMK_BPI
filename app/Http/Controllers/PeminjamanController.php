@@ -35,6 +35,11 @@ class PeminjamanController extends Controller
     public function store(Request $data)
     {
 
+        $this->validate($data,[
+            'member_barcode' => 'required',
+            'member_name' => 'required'
+        ]);
+
         $error = peminjaman::where('member_barcode',$data['member_barcode'])->where('status','1')->get();
 
         if(count($error) > 0){

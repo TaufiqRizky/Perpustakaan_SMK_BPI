@@ -201,6 +201,13 @@
                             </li>
                         </ul>
                     </li>
+
+                    <li class="{{ Request::segment(1) === 'report' ? 'active' : null }}">
+                        <a href="{{ url('report') }}">
+                            <i class="material-icons">library_books</i>
+                            <span>Report</span>
+                        </a>
+                    </li>
                     
                 </ul>
             </div>

@@ -28,17 +28,27 @@
                            <form action="{{ url('member/store') }}" enctype="multipart/form-data" method="POST">
                             {!! csrf_field() !!}
                                 
-                                <div class="form-group form-float">
+                                <div class="form-group{{ $errors->has('barcode') ? ' has-error' : '' }} form-float">
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="barcode" id="barcode" required>
+                                        <input type="text" class="form-control" name="barcode" id="barcode">
                                         <label class="form-label">NIS</label>
                                     </div>
+                                    @if($errors->has('barcode'))
+                                        <span class="help-block">
+                                        {{ $errors->first('barcode') }}
+                                        </span>
+                                    @endif
                                 </div>
-                                <div class="form-group form-float">
+                                <div class="form-group{{ $errors->has('nama') ? ' has-error' : '' }} form-float">
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="nama" id="nama" pattern="[A-z]{1,30}" required>
+                                        <input type="text" class="form-control" name="nama" id="nama">
                                         <label class="form-label">Nama</label>
                                     </div>
+                                    @if($errors->has('nama'))
+                                        <span class="help-block">
+                                        {{ $errors->first('nama') }}
+                                        </span>
+                                    @endif
                                 </div>
                                 <p>
                                     <input name="jk" type="radio" id="jk" value="L">
@@ -47,17 +57,27 @@
                                     <input name="jk" type="radio" id="jkp" value="P">
                                     <label for="jkp">Perempuan</label>
                                 </p>
-                                <div class="form-group form-float">
+                                <div class="form-group{{ $errors->has('usia') ? ' has-error' : '' }} form-float">
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="usia" id="usia" pattern="[0-9]{1,3}" required>
+                                        <input type="text" class="form-control" name="usia" id="usia">
                                         <label class="form-label">Usia</label>
                                     </div>
+                                    @if($errors->has('usia'))
+                                        <span class="help-block">
+                                        {{ $errors->first('usia') }}
+                                        </span>
+                                    @endif
                                 </div>
-                                <div class="form-group form-float">
+                                <div class="form-group{{ $errors->has('kelas') ? ' has-error' : '' }} form-float">
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="kelas" id="kelas" required>
+                                        <input type="text" class="form-control" name="kelas" id="kelas">
                                         <label class="form-label">Kelas</label>
                                     </div>
+                                    @if($errors->has('kelas'))
+                                        <span class="help-block">
+                                        {{ $errors->first('kelas') }}
+                                        </span>
+                                    @endif
                                 </div>
                                 <div class="row clearfix">
                                 <div class="col-sm-12">
@@ -71,18 +91,23 @@
                                     </select>
                                 </div>
                                 </div>
-                                <div class="form-group form-float">
+                                <div class="form-group{{ $errors->has('alamat') ? ' has-error' : '' }} form-float">
                                     <div class="form-line">
                                         <textarea name="alamat" cols="30" rows="5" class="form-control no-resize" id="alamat" ></textarea>
                                         <label class="form-label">Alamat</label>
                                     </div>
+                                    @if($errors->has('alamat'))
+                                        <span class="help-block">
+                                        {{ $errors->first('alamat') }}
+                                        </span>
+                                    @endif
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-12" align="left">
                                         <img width="120" class=" img-responsive preview" alt="Preview Photo">
                                     </div>
                                 </div>
-                                <div class="form-group form-float">
+                                <div class="form-group{{ $errors->has('foto') ? ' has-error' : '' }} form-float">
                                     <div class="form-line">
                                         <div class="input-group">
                                             <label class="input-group-btn">
@@ -93,6 +118,11 @@
                                             <input type="text" class="form-control" readonly>
                                         </div>
                                     </div>
+                                    @if($errors->has('foto'))
+                                        <span class="help-block">
+                                        {{ $errors->first('foto') }}
+                                        </span>
+                                    @endif
                                 </div>
                                 <button type="submit" class="btn btn-primary waves-effect" >Simpan</button>
                         
@@ -147,18 +177,6 @@
             });
         });
     });
-</script>
-<script type="text/javascript">
-    var nama = document.getElementById('nama');
-    var usia = document.getElementById('usia');
-
-    nama.oninvalid = function(event) {
-        event.target.setCustomValidity('Maksimal 30 karakter!');
-    }
-
-    usia.oninvalid = function(event) {
-        event.target.setCustomValidity('Harus angka!');
-    }
 </script>
 
 @endsection

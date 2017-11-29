@@ -34,16 +34,22 @@
                                 <thead>
                                     <tr>
                                         <th align="center">No</th>
-                                        <th align="center">Barcode Buku</th>
-                                        <th align="center">Status</th>
+                                        <th align="center">Nama</th>
+                                        <th align="center">Judul Buku</th>
+                                        <th align="center">Tanggal Pinjam</th>
+                                        <th align="center">Tanggal Kembali</th>
+                                        <th align="center">Total Denda</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($peminjaman as $row => $value)
                                     <tr class="item{{$value->id}}">
                                         <th scope="row">{{ $row+1 }}</th>
-                                        <td><div id="barcode_buku{{ $row+1 }}"></div></td>
-                                        <td>{{ $value->status }}</td>
+                                        <td>{{ $value->nama }}</td>
+                                        <td>{{ $value->judul }}</td>
+                                        <td>{{ $value->tgl_pinjam }}</td>
+                                        <td>{{ $value->tgl_kembali }}</td>
+                                        <td>{{ $value->total_denda }}</td>
                                     </tr>
                                   
                                @endforeach

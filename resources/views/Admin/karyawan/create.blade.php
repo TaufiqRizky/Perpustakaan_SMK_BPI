@@ -28,17 +28,27 @@
                            <form action="{{ url('karyawan/store') }}" enctype="multipart/form-data" method="POST">
                             {!! csrf_field() !!}
                                 
-                                <div class="form-group form-float">
+                                <div class="form-group{{ $errors->has('nik') ? ' has-error' : '' }} form-float">
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="nik" id="nik" required>
+                                        <input type="text" class="form-control" name="nik" id="nik">
                                         <label class="form-label">NIK</label>
                                     </div>
+                                    @if($errors->has('nik'))
+                                        <span class="help-block">
+                                        {{ $errors->first('nik') }}
+                                        </span>
+                                    @endif
                                 </div>
-                                <div class="form-group form-float">
+                                <div class="form-group{{ $errors->has('nama') ? ' has-error' : '' }} form-float">
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="nama" id="nama" pattern="[A-z]{1,30}" required>
+                                        <input type="text" class="form-control" name="nama" id="nama">
                                         <label class="form-label">Nama</label>
                                     </div>
+                                    @if($errors->has('nama'))
+                                        <span class="help-block">
+                                        {{ $errors->first('nama') }}
+                                        </span>
+                                    @endif
                                 </div>
                                 <p>
                                     <input name="jk" type="radio" id="jk" value="L">
@@ -47,30 +57,45 @@
                                     <input name="jk" type="radio" id="jkp" value="P">
                                     <label for="jkp">Perempuan</label>
                                 </p>
-                                <div class="form-group form-float">
+                                <div class="form-group{{ $errors->has('tlp') ? ' has-error' : '' }} form-float">
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="tlp" id="tlp" pattern="[0-9]{1,13}" required>
+                                        <input type="text" class="form-control" name="tlp" id="tlp">
                                         <label class="form-label">No. Telepon</label>
                                     </div>
+                                    @if($errors->has('tlp'))
+                                        <span class="help-block">
+                                        {{ $errors->first('tlp') }}
+                                        </span>
+                                    @endif
                                 </div>
-                                <div class="form-group form-float">
+                                <div class="form-group{{ $errors->has('jabatan') ? ' has-error' : '' }} form-float">
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="jabatan" id="jabatan" required>
+                                        <input type="text" class="form-control" name="jabatan" id="jabatan">
                                         <label class="form-label">Jabatan</label>
                                     </div>
+                                    @if($errors->has('jabatan'))
+                                        <span class="help-block">
+                                        {{ $errors->first('jabatan') }}
+                                        </span>
+                                    @endif
                                 </div>
-                                <div class="form-group form-float">
+                                <div class="form-group{{ $errors->has('alamat') ? ' has-error' : '' }} form-float">
                                     <div class="form-line">
                                         <textarea name="alamat" cols="30" rows="5" class="form-control no-resize" id="alamat" ></textarea>
                                         <label class="form-label">Alamat</label>
                                     </div>
+                                    @if($errors->has('alamat'))
+                                        <span class="help-block">
+                                        {{ $errors->first('alamat') }}
+                                        </span>
+                                    @endif
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-12" align="left">
                                         <img width="120" class=" img-responsive preview" alt="Preview Photo">
                                     </div>
                                 </div>
-                                <div class="form-group form-float">
+                                <div class="form-group{{ $errors->has('foto') ? ' has-error' : '' }} form-float">
                                     <div class="form-line">
                                         <div class="input-group">
                                             <label class="input-group-btn">
@@ -81,6 +106,11 @@
                                             <input type="text" class="form-control" readonly>
                                         </div>
                                     </div>
+                                    @if($errors->has('foto'))
+                                        <span class="help-block">
+                                        {{ $errors->first('foto') }}
+                                        </span>
+                                    @endif
                                 </div>
                                 <button type="submit" class="btn btn-primary waves-effect" >Simpan</button>
                             </form>
@@ -134,18 +164,6 @@
             });
         });
     });
-</script>
-<script type="text/javascript">
-    var nama = document.getElementById('nama');
-    var tlp = document.getElementById('tlp');
-
-    nama.oninvalid = function(event) {
-        event.target.setCustomValidity('Maksimal 30 karakter!');
-    }
-
-    tlp.oninvalid = function(event) {
-        event.target.setCustomValidity('Harus angka dan Maksimal 13 karakter!');
-    }
 </script>
 
 @endsection

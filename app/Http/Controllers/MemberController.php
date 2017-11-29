@@ -18,6 +18,14 @@ class MemberController extends Controller
    }
 
    public function store(Request $request){
+    $this->validate($request,[
+            'barcode' => 'required',
+            'nama' => 'required|max:30',
+            'alamat' => 'required',
+            'kelas' => 'required',
+            'usia' => 'required|numeric',
+            'foto' => 'image'
+        ]);
    		
    		$member= new \App\member;
    		$member->barcode=$request->barcode;

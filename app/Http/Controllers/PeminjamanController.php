@@ -32,6 +32,11 @@ class PeminjamanController extends Controller
         return view('admin.peminjaman.create');
     }
 
+    public function get_buku($id){
+        $buku = DB::table('buku')->where('barcode', '=', $id)->get();
+        return $buku->toJson();
+      }
+
     public function store(Request $data)
     {
 
@@ -42,9 +47,13 @@ class PeminjamanController extends Controller
         ]);
 
         $error = peminjaman::where('member_barcode',$data['member_barcode'])->where('status','1')->get();
-
+        $buku1 = $data->buku_barcode[0];
+        $buku2 = $data->buku_barcode[1];
         if(count($error) > 0){
             $data->session()->flash('alert-danger', 'Member '.$data['member_name'].' dengan Barcode '.$data['member_barcode'].' sedang meminjam buku!');
+            return redirect()->route('admin-create-peminjaman');
+        }elseif($buku1 == $buku2){
+            $data->session()->flash('alert-danger', 'Tidak Dapat Meminjam Buku Yang Sama');
             return redirect()->route('admin-create-peminjaman');
         }else{
             $pinjam = new Peminjaman;

@@ -66,6 +66,7 @@ Route::delete('genre/{id}','admin@destroy_genre');
         Route::get('peminjaman/{id}/detail', array('as' => 'admin-detail-peminjaman', 'uses' => 'PeminjamanController@detail'));
         Route::post('peminjaman/{id}/update', array('as' => 'admin-update-peminjaman', 'uses' => 'PeminjamanController@update'));
         Route::delete('peminjaman/{id}/delete', array('as' => 'admin-delete-peminjaman', 'uses' => 'PeminjamanController@destroy'));
+        Route::get('peminjaman/get-buku/{id}','PeminjamanController@get_buku');
         Route::get('datatables/peminjaman', array('as' => 'datatables-peminjaman', 'uses' => 'PeminjamanController@datatables'));
 
   // route pengembalian

@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="nama" id="nama" pattern="[A-z]{1,30}" required>
+                                        <input type="text" class="form-control" name="nama" id="nama" required>
                                         <label class="form-label">Nama</label>
                                     </div>
                                 </div>
@@ -49,7 +49,7 @@
                                 </p>
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="usia" id="usia" pattern="[0-9]{1,3}" required>
+                                        <input type="text" class="form-control" name="usia" id="usia" required>
                                         <label class="form-label">Usia</label>
                                     </div>
                                 </div>
@@ -147,18 +147,6 @@
             });
         });
     });
-</script>
-<script type="text/javascript">
-    var nama = document.getElementById('nama');
-    var usia = document.getElementById('usia');
-
-    nama.oninvalid = function(event) {
-        event.target.setCustomValidity('Maksimal 30 karakter!');
-    }
-
-    usia.oninvalid = function(event) {
-        event.target.setCustomValidity('Harus angka!');
-    }
 </script>
 
 @endsection

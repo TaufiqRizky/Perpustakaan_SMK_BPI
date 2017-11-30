@@ -59,7 +59,7 @@
                                         <td>{{ $value->stok }}</td>
                                         <td>
                                             
-                                            <a class="btn btn-primary waves-effect" data-type="" href="{{ url('buku/'.$value->id.'/edit') }}" ><i class="material-icons">edit</i></a>
+                                            <a class="btn btn-primary waves-effect" data-type="" href="{{ url('buku/'.$value->barcode.'/edit') }}" ><i class="material-icons">edit</i></a>
                                         
                                             <button class="btn btn-danger waves-effect" data-id="{{$value->id}}" data-type="D_buku"><i class="material-icons">delete</i></button>
                                         </td>

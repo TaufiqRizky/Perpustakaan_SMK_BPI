@@ -24,12 +24,13 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="body js-sweetalert">
-                           
+                        <div class="body ">
+                           <form action="{{ url('buku/store') }}" enctype="multipart/form-data" method="POST">
                             {!! csrf_field() !!}
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="judul" id="judul" required>
+                                        <input type="text" class="form-control" name="judul" id="judul" value="" required>
+                                        <input type="hidden" class="form-control" name="barcode" id="barcode" value="{{$barcode}}" >
                                         <label class="form-label">Judul</label>
                                     </div>
                                 </div>
@@ -53,7 +54,7 @@
                                 </div>
                     			<div class="row clearfix">
                                 <div class="col-sm-6">
-                                    <select class="form-control show-tick" id="jenis">
+                                    <select class="form-control show-tick" id="jenis" name="jenis">
                                         <option value="">-- Select Jenis --</option>
                                         @foreach($jenis as $row => $value)
                                         <option value="{{$value->id}}">{{$value->jenis}}</option>
@@ -64,7 +65,7 @@
                                     </select>
                                 </div>
                                 <div class="col-sm-6">
-                                    <select class="form-control show-tick" id="genre" >
+                                    <select class="form-control show-tick" id="genre" name="genre" >
                                         <option value="">-- Select Genre --</option>
                                         @foreach($genre as $row => $value)
                                         <option value="{{$value->id}}">{{$value->genre}}</option>
@@ -82,12 +83,9 @@
                                     </div>
                                 </div>
                                 
-                                <div class="form-group">
-                                    <input type="checkbox" id="checkbox" name="checkbox">
-                                    <label for="checkbox">Saya Bukan Robot</label>
-                                </div>
-                                <button class="btn btn-primary waves-effect" data-type="prompt">Simpan</button>
-                        
+                               
+                                <button class="btn btn-primary waves-effect" type="submit">Simpan</button>
+                        </form>
                         </div>
                     </div>
                 </div>
@@ -98,20 +96,7 @@
 
 @section('js')
 
-<script type="text/javascript">
 
-    $(document).on("keyup ", ".barcode", function(){
-        if ($(this).val().length == 13) {
-            $('#btn-confirm').click();
-        }else{
-           swal.showInputError("Please scan barcode ean13 !!!"); return false
-        }
-        // console.log($(this).val().length);
-            
-        });
-
-   
-</script>
 
 
 @endsection

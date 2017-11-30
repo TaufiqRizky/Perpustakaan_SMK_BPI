@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\M_Buku;
 
 
 class Buku extends Controller
@@ -22,9 +23,10 @@ class Buku extends Controller
 		return view('admin.buku.index',$data);
 	}
 
-    public function create(){
+    public function create($id){
       $data['jenis']= \App\M_Jenis::all();
-       $data['genre']= \App\M_genre::all();
+      $data['genre']= \App\M_genre::all();
+      $data['barcode']=$id;
    		return view('admin.buku.create',$data);
    }
 
@@ -38,7 +40,7 @@ class Buku extends Controller
    		$buku->genre=$request->genre;
    		$buku->jenis=$request->jenis;
    		$buku->sinopsis=$request->sinopsis;
-         $buku->stok=$request->stok;
+      $buku->stok=$request->stok;
    		$buku->save();
    		return redirect('buku');
    		
@@ -51,8 +53,8 @@ class Buku extends Controller
 
    public function edit($id){
       $data['jenis']= \App\M_Jenis::all();
-       $data['genre']= \App\M_genre::all();
-         $data['buku'] = \App\M_Buku::find($id);
+      $data['genre']= \App\M_genre::all();
+      $data['buku'] = DB::table('buku')->where('barcode', '=', $id)->first();
          return view('admin.buku.edit',$data);
    }
 
@@ -60,6 +62,19 @@ class Buku extends Controller
       $buku = \App\M_Buku::find($id);
       $buku->update($request->all());//method update
       return redirect('buku');
+   }
+
+   public function cek_data($id){
+      $data['jenis']= \App\M_Jenis::all();
+      $data['genre']= \App\M_genre::all();
+      $cek = DB::table('buku')->where('barcode', '=', $id)->get();
+
+      if (count($cek) > 0) {
+        return 'true';
+      }else{
+       return 'false';
+      }
+      
    }
 
 }

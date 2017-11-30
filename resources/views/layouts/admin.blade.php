@@ -106,7 +106,7 @@
             </div>
             <!-- #User Info -->
             <!-- Menu -->
-            <div class="menu">
+            <div class="menu ">
                 <ul class="list">
                     <li class="header">MAIN NAVIGATION</li>
                     <li class="{{ Request::segment(1) === 'home' ? 'active' : null }}">
@@ -115,7 +115,6 @@
                             <span>Home</span>
                         </a>
                     </li>
-
                     <li class="{{ Request::segment(1) === 'karyawan' ? 'active' : null }}">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">group</i>
@@ -128,7 +127,6 @@
                             <li class="{{ Request::path() ==  'karyawan/create' ? 'active' : ''  }}">
                                 <a href="{{ url('karyawan/create') }}">Tambah Data</a>
                             </li>
-                            
                         </ul>
                     </li>
 
@@ -154,12 +152,12 @@
                             <i class="material-icons">book</i>
                             <span>Buku</span>
                         </a>
-                        <ul class="ml-menu">
+                        <ul class="ml-menu ">
                             <li class="{{ Request::path() ==  'buku' ? 'active' : ''  }}">
                                 <a href="{{ url('buku') }}">Lihat Data</a>
                             </li>
-                            <li class="{{ Request::path() ==  'buku/create' ? 'active' : ''  }}">
-                                <a href="{{ url('buku/create') }}">Tambah Data</a>
+                            <li class=" {{ Request::path() ==  'buku/create' ? 'active' : ''  }}">
+                                <a href="#" class="tmbh_buku">Tambah Data</a>
                             </li>
                             
                         </ul>
@@ -306,7 +304,54 @@
     <!-- barcode -->
      <script src="{{asset('js/jquery-barcode.js')}}"></script>
     <!-- custom js -->
+    <script type="text/javascript">
+         $('.tmbh_buku').on('click', function () {
+            swal({
+                title: "Barcode",
+                text: "Please Scan Barcode:",
+                type: "input",
+                showCancelButton: true,
+                closeOnConfirm: false,
+                animation: "slide-from-top",
+                inputPlaceholder: "Click And Scan",
+                inputClass: "barcode"
+            }, function (inputValue) {
+                if (inputValue === false) return false;
+                if (inputValue === "") {
+                    swal.showInputError("You need to scan barcode first!"); return false
+                }
 
+                $.ajax({
+                    url:"buku/cek_data/"+inputValue,
+                    type:'get',
+                    headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') },
+                    data:{barcode:inputValue},
+                    success: function (data) {
+                        if (data == 'true') {
+                            window.location='buku/'+inputValue+'/edit';
+                        }else{
+                            window.location='buku/create/'+inputValue;
+                        }
+
+                        },
+                        error: function (data) {
+                             swal("Gagal!", "", "error");
+                        }
+                });
+                
+            });
+        });
+
+        $(document).on("keyup ", ".barcode", function(){
+        if ($(this).val().length == 13) {
+            $('#btn-confirm').click();
+        }else{
+           swal.showInputError("Please scan barcode ean13 !!!"); return false
+        }
+        // console.log($(this).val().length);
+            
+        });
+    </script>
     @yield('js')
 </body>
 

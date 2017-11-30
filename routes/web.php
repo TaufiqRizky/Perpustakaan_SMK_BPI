@@ -21,8 +21,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('logout', array('as' => 'logout', 'uses' => 'Admin@logoutAdmin'));
 //buku
 Route::get('buku','Buku@index');
-Route::get('buku/create','Buku@create');
+Route::get('buku/create/{id}','Buku@create');
 Route::post('buku/store','Buku@store');
+Route::get('buku/cek_data/{id}','Buku@cek_data');
 Route::delete('buku/{id}','Buku@destroy');
 Route::get('/buku/{id}/edit','Buku@edit');
 Route::post('/buku/{id}', 'Buku@update');

@@ -26,6 +26,7 @@
                         </div>
                         <center>
                         <div class="body">
+                            <div class="printableArea">
                                     <div style="height: 6.5cm; width: 6cm; background-image: url('/images/bg.jpg'); background-size: 100% 100%;  ">
                                         <br>
                                         <b><div style="color: white; font-size: 15px;">PERPUSTAKAAN BPI</div></b>
@@ -43,9 +44,16 @@
                                     <br>
                                         <div id="nik"></div>
                                     
-                                    </div>
-                                
+                                    
+                                    <br>
+                                    <br>
+                                    
+                                </div>
+                                <br>
+                                    <br>
+                                <a href="javascript:void(0);" id="printButton">Print</a> 
                         </div>
+                    </div>
                         </center>
                     </div>
                 </div>
@@ -63,6 +71,16 @@ var table;
       
 });
 
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    $("#printButton").click(function(){
+        var mode = 'iframe'; //popup
+        var close = mode == "popup";
+        var options = { mode : mode, popClose : close};
+        $("div.printableArea").printArea( options );
+    });
+});
 </script>
 
 

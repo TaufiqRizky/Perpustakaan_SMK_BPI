@@ -183,22 +183,30 @@
                         </ul>
                     </li>
 
-                    <li class="{{ Request::segment(1) === 'transaksi' ? 'active' : null }}">
+                    <li class="{{ Request::segment(1) === 'peminjaman' ? 'active' : null }}">
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">credit_card</i>
-                            <span>Transaksi</span>
+                            <i class="material-icons">event_available</i>
+                            <span>Peminjaman</span>
                         </a>
-                        <ul class="ml-menu js-sweetalert">
+                        <ul class="ml-menu">
                             <li class="{{ Request::path() ==  'peminjaman' ? 'active' : ''  }}">
-                                <a href="{{ route('admin-index-peminjaman') }}" data-type="Apinjam">Peminjaman</a>
-                            </li>
-                            <li class="{{ Request::path() ==  'peminjaman/create' ? 'active' : ''  }}">
-                            </li>
-                            <li class="{{ Request::path() ==  'transaksi/pengembalian' ? 'active' : ''  }}">
-                                <a href="{{ url('transaksi/pengembalian') }}" >Pengembalian</a>
+                                <a href="{{ route('admin-index-peminjaman') }}">Data Peminjaman</a>
                             </li>
                         </ul>
                     </li>
+
+                    <li class="{{ Request::segment(1) === 'pengembalian' ? 'active' : null }}">
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">event_busy</i>
+                            <span>Pengembalian</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li class="{{ Request::path() ==  'transaksi/pengembalian' ? 'active' : ''  }}">
+                                <a href="{{ url('transaksi/pengembalian') }}">Pengembalian</a>
+                            </li>
+                        </ul>
+                    </li>
+
 
                     <li class="{{ Request::segment(1) === 'report' ? 'active' : null }}">
                         <a href="{{ url('report') }}">
@@ -253,6 +261,13 @@
  
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.flash.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.print.min.js"></script>
 
 
 
@@ -352,6 +367,10 @@
             
         });
     </script>
+    <!-- PrintArea JS -->
+    <!-- <script src="{{asset('plugins/jquery-printarea/jquery-1.10.2.js')}}" type="text/JavaScript" language="javascript"></script> -->
+    <script src="{{asset('plugins/jquery-printarea/jquery-ui-1.10.4.custom.js')}}"></script>
+    <script src="{{asset('plugins/jquery-printarea/jquery.PrintArea.js')}}" type="text/JavaScript" language="javascript"></script>
     @yield('js')
 </body>
 

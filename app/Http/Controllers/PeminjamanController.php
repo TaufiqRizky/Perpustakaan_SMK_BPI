@@ -32,18 +32,28 @@ class PeminjamanController extends Controller
         return view('admin.peminjaman.create');
     }
 
+    public function get_buku($id){
+        $buku = DB::table('buku')->where('barcode', '=', $id)->get();
+        return $buku->toJson();
+      }
+
     public function store(Request $data)
     {
 
         $this->validate($data,[
             'member_barcode' => 'required',
-            'member_name' => 'required'
+            'member_name' => 'required',
+            'buku_barcode.0' => 'required'
         ]);
 
         $error = peminjaman::where('member_barcode',$data['member_barcode'])->where('status','1')->get();
-
+        $buku1 = $data->buku_barcode[0];
+        $buku2 = $data->buku_barcode[1];
         if(count($error) > 0){
             $data->session()->flash('alert-danger', 'Member '.$data['member_name'].' dengan Barcode '.$data['member_barcode'].' sedang meminjam buku!');
+            return redirect()->route('admin-create-peminjaman');
+        }elseif($buku1 == $buku2){
+            $data->session()->flash('alert-danger', 'Tidak Dapat Meminjam Buku Yang Sama');
             return redirect()->route('admin-create-peminjaman');
         }else{
             $pinjam = new Peminjaman;
@@ -87,6 +97,20 @@ class PeminjamanController extends Controller
             $data->session()->flash('alert-success', 'Member '.$data['member_name'].' dengan Barcode '.$data['member_barcode'].' Berhasil Meminjam Buku');
             return redirect()->route('admin-index-peminjaman');  
         }
+    }
+
+    public function detail($id){
+        $data['detail'] = DB::table('member')
+                        ->join('peminjaman','member.barcode','=','peminjaman.member_barcode')
+                        ->where('peminjaman.id',$id)
+                        ->select('*')
+                        ->first();
+        $data['buku'] = DB::table('peminjaman')
+                        ->join('peminjaman_galleries','peminjaman.id','=','peminjaman_galleries.peminjaman_id')
+                        ->join('buku','peminjaman_galleries.buku_barcode','=','buku.barcode')
+                        ->where('peminjaman.id',$id)
+                        ->get();
+        return view('admin.peminjaman.view',$data);
     }
 
    	public static function datatables(Request $request)

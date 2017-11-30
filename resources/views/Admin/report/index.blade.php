@@ -34,14 +34,22 @@
                                 <thead>
                                     <tr>
                                         <th align="center">No</th>
-                                        <th align="center">Barcode Buku</th>
+                                        <th align="center">Nama</th>
+                                        <th align="center">Judul Buku</th>
+                                        <th align="center">Tanggal Pinjam</th>
+                                        <th align="center">Tanggal Kembali</th>
+                                        <th align="center">Total Denda</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($report as $row => $value)
+                                @foreach($peminjaman as $row => $value)
                                     <tr class="item{{$value->id}}">
                                         <th scope="row">{{ $row+1 }}</th>
-                                        <td><div id="barcode_buku{{ $row+1 }}"></div></td>
+                                        <td>{{ $value->nama }}</td>
+                                        <td>{{ $value->judul }}</td>
+                                        <td>{{ $value->tgl_pinjam }}</td>
+                                        <td>{{ $value->tgl_kembali }}</td>
+                                        <td>{{ $value->total_denda }}</td>
                                     </tr>
                                   
                                @endforeach
@@ -60,12 +68,19 @@
 <script type="text/javascript">
 var table;
       $(document).ready(function(){
-       @foreach($report as $row => $value)  
-       $("#barcode_buku{{ $row+1 }}").barcode("{{ $value->buku_barcode }}", "ean13", { barHeight:50});     
+       @foreach($peminjaman as $row => $value)  
+       $("#barcode_buku{{ $row+1 }}").barcode("{{ $value->buku_barcode }}", "codabar", { barHeight:50});     
         @endforeach
-   table = $('#report').DataTable();
+   table = $('#report').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+   });
 });
 </script>
+
+
 
 
 @endsection

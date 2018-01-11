@@ -22,7 +22,10 @@ class PengembalianController extends Controller
 	  }
 
 	  public function get_member($id){
-	  	$member = DB::table('member')->where('barcode', '=', $id)->get();
+	  	$member = DB::table('kelas')
+        ->join('member','kelas.id','=','member.kelas_id')
+        ->join('jurusan','member.jurusan_id','=','jurusan.id')
+        ->where('barcode', '=', $id)->get();
 	  	return $member->toJson();
 	  }
 

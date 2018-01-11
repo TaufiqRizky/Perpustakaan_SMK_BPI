@@ -30,6 +30,6 @@ class PengembalianGalleries extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('pengembalian_galleries');
     }
 }

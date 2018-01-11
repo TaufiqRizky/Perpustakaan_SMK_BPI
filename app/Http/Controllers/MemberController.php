@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use app\member;
+use DB;
 
 class MemberController extends Controller
 {
@@ -18,15 +20,19 @@ class MemberController extends Controller
    }
 
    public function store(Request $request){
+    $this->validate($request,[
+            'barcode' => 'required',
+            'nama' => 'required|max:30',
+            'foto' => 'image'
+        ]);
    		
    		$member= new \App\member;
    		$member->barcode=$request->barcode;
-   		$member->nama=$request->nama;
-      $member->alamat=$request->alamat;
-      $member->kelas=$request->kelas;
-      $member->usia=$request->usia;
+      $upper = strtoupper($request->nama);
+   		$member->nama=$upper;
       $member->jk=$request->jk;
-   		$member->unit=$request->unit;
+      $member->kelas_id=$request->kelas_id;
+      $member->jurusan_id=$request->jurusan_id;
 
   		if ($request->hasFile('foto')) {
         $foto = $request->file('foto');
@@ -45,7 +51,10 @@ class MemberController extends Controller
    }
 
    public function index(){
-      $data['member']= \App\member::all();
+      $data['member']= DB::table('kelas')
+        ->join('member','kelas.id','=','member.kelas_id')
+        ->join('jurusan','member.jurusan_id','=','jurusan.id')
+        ->get();
       return view('admin.member.index',$data);
    }
 
@@ -67,12 +76,19 @@ class MemberController extends Controller
 
    public function update(Request $request, $id){
       $member = \App\member::find($id);
+      $member->barcode=$request->barcode;
       $member->nama=$request->nama;
-      $member->alamat=$request->alamat;
-      $member->kelas=$request->kelas;
-      $member->usia=$request->usia;
       $member->jk=$request->jk;
-      $member->unit=$request->unit;
+      if ($request->hasFile('foto')) {
+        $foto = $request->file('foto');
+          if ($foto->isValid()) {
+            $fileName = date('Y_m_d_His').'_'.$foto->getClientOriginalName();
+            
+            $foto->move(public_path('storage/member'), $fileName);
+
+      $member->foto = $fileName;
+          }
+      }      
       $member->save();
       return redirect('/member');
    }

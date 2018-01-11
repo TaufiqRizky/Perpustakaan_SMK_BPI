@@ -14,9 +14,14 @@ class ReportController extends Controller
 
 	public function index(){
 		   //$data['buku']= \App\M_Buku::all();
-      $data['peminjaman']= DB::table('peminjaman_galleries')
-      ->join('pengembalian_galleries','peminjaman_galleries.buku_barcode','=','pengembalian_galleries.buku_barcode')
-      ->select('peminjaman_galleries.id','peminjaman_galleries.buku_barcode','peminjaman_galleries.status')->get();
+      $data['peminjaman']= DB::table('member')
+                        ->join('peminjaman','member.barcode','=','peminjaman.member_barcode')
+                        ->join('peminjaman_galleries','peminjaman.id','=','peminjaman_galleries.peminjaman_id')
+                        ->join('pengembalian','peminjaman_galleries.peminjaman_id','=','pengembalian.id_peminjaman')
+                        ->join('denda','pengembalian.id','=','denda.pengembalian_id')
+                        ->join('pengembalian_galleries','denda.pengembalian_id','=','pengembalian_galleries.pengembalian_id')
+                        ->join('buku','pengembalian_galleries.buku_barcode','=','buku.barcode')
+      ->select('*')->get();
 		return view('admin.report.index',$data);
 	}
 }

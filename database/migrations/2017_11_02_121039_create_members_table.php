@@ -17,12 +17,10 @@ class CreateMembersTable extends Migration
             $table->increments('id');
             $table->string('barcode')->unique();
             $table->string('nama');
-            $table->text('alamat');
-            $table->string('kelas');
-            $table->string('unit');
-            $table->string('foto');
             $table->string('jk');
-            $table->integer('usia');
+            $table->string('kelas_id');
+            $table->string('jurusan_id');
+            $table->string('foto');
             $table->timestamps();
         });
     }

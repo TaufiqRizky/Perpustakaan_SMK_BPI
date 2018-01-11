@@ -66,14 +66,14 @@
                             </div>
                             <div class="form-group form-float alamat">
                                 <div class="form-line">
-                                    <input type="text" class="form-control" name="alamat" id="alamat" value=" " readonly>
-                                    <label class="form-label">Alamat Member</label>
+                                    <input type="text" class="form-control" name="kelas" id="alamat" value=" " readonly>
+                                    <label class="form-label">Kelas</label>
                                 </div>
                             </div>
                             <div class="form-group form-float unit">
                                 <div class="form-line">
-                                    <input type="text" class="form-control" name="unit" id="unit" value=" " readonly hidden>
-                                    <label class="form-label">Unit</label>
+                                    <input type="text" class="form-control" name="jurusan" id="unit" value=" " readonly hidden>
+                                    <label class="form-label">Jurusan</label>
                                 </div>
                             </div>
                             <div class="form-group form-float tgl_pinjam">
@@ -226,8 +226,8 @@ $(document).ready(function(){
                    json_member=r;
 
                     $('#n_member').val(r[0]["nama"]); 
-                    $('#alamat').val(r[0]["alamat"]);
-                    $('#unit').val(r[0]["unit"]);
+                    $('#alamat').val(r[0]["kelas"]);
+                    $('#unit').val(r[0]["nama_jurusan"]);
 
                      loading.waitMe('hide');
                     

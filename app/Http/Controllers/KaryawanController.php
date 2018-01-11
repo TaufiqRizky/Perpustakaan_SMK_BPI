@@ -15,6 +15,14 @@ class KaryawanController extends Controller
    }
 
    public function store(Request $request){
+    $this->validate($request,[
+            'nik' => 'required',
+            'nama' => 'required|max:30',
+            'tlp' => 'required|numeric',
+            'jabatan' => 'required',
+            'foto' => 'image',
+            'alamat' => 'required'
+        ]);
    		
    		$karyawan= new \App\karyawan;
    		$karyawan->nik=$request->nik;

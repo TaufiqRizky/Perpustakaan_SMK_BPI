@@ -41,8 +41,7 @@
                                         <th align="center" width="14%">NIS</th>
                                         <th align="center" width="18%">Nama</th>
                                         <th align="center" width="8%">Kelas</th>
-                                        <th align="center" width="8%">Unit</th>
-                                        <th align="center" width="18%">Alamat</th>
+                                        <th align="center" width="8%">Jurusan</th>
                                         <th align="center" width="14%">Created At</th>
                                         <th align="center" width="18%">Action</th>
                                     </tr>
@@ -53,8 +52,7 @@
                                         <td><div id="barcode{{ $row+1 }}"></div></td>
                                         <td>{{ str_limit($value->nama,30) }}</td>
                                         <td>{{ $value->kelas }}</td>
-                                        <td>{{ $value->unit }}</td>
-                                        <td>{{ str_limit($value->alamat,50) }}</td>
+                                        <td>{{ $value->nama_jurusan }}</td>
                                         <td>{{ $value->created_at }}</td>
                                         <td>
                                             <a class="btn btn-success waves-effect" style=" " href="{{ url('member/'.$value->id.'/detail') }}" ><i class="material-icons">remove_red_eye</i></a>

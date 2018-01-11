@@ -56,7 +56,7 @@
                             <div class="form-label"><b>Unit</b></div>
                         </div>
                         <div class="col-sm-9">
-                            <div class="form-control">{{$detail->unit}}</div>
+                            <div class="form-control">{{$detail->nama_jurusan}}</div>
                         </div>
                     </div>
 

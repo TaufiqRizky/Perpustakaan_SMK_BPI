@@ -30,46 +30,45 @@
                             {{ method_field('PUT') }}
                                 <div class="form-group form-float">
                                     <div class="form-line">
+                                        <input type="text" class="form-control" name="nis" id="nis" value="{{ $member->barcode }}" readonly>
+                                        <label class="form-label">No. Induk</label>
+                                    </div>
+                                </div>
+                                <div class="form-group form-float">
+                                    <div class="form-line">
                                         <input type="text" class="form-control" name="nama" id="nama" value="{{ $member->nama }}" required>
                                         <label class="form-label">Nama</label>
                                     </div>
                                 </div>
-                                <p>
-                                    <input name="jk" type="radio" id="jk" value="L">
-                                    <label for="jk">Laki-laki</label>
-
-                                    <input name="jk" type="radio" id="jkp" value="P">
-                                    <label for="jkp">Perempuan</label>
-                                </p>
                                 <div class="row clearfix">
-                                <div class="col-sm-12">
-                                    <select class="form-control show-tick" name="unit" id="unit">
-                                        <option value="">-- Select Unit --</option>
-                                        <option value="SMA">SMA</option>
-                                        <option value="SMK">SMK</option>
-                                        <div class="Ojenis">
-                                            
+                                    <div class="col-sm-12">
+                                        <select class="form-control show-tick" name="jk" id="jk">
+                                            <option value="L">Laki-Laki</option>
+                                            <option value="P">Perempuan</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12" align="left">
+                                        <img width="120" src="{{asset('storage/member/'.$member->foto)}}" class="img-responsive preview" alt="Preview Photo">
+                                    </div>
+                                </div>
+                                <div class="form-group{{ $errors->has('foto') ? ' has-error' : '' }} form-float">
+                                    <div class="form-line">
+                                        <div class="input-group">
+                                            <label class="input-group-btn">
+                                                <span class="btn btn-primary">
+                                                    Choose Photo <input type="file" class="inputfoto" accept="image/png, image/jpeg, image/gif, image/ico" name="foto" id="logo" style="display: none;" multiple>
+                                                </span>
+                                            </label>
+                                            <input type="text" class="form-control" readonly>
                                         </div>
-                                    </select>
-                                </div>
-                                </div>
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <input type="text" class="form-control" name="usia" id="usia" value="{{ $member->usia }}" required>
-                                        <label class="form-label">Usia</label>
                                     </div>
-                                </div>
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <input type="text" class="form-control" name="kelas" id="kelas" value="{{ $member->kelas }}" required>
-                                        <label class="form-label">Kelas</label>
-                                    </div>
-                                </div>
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <textarea name="alamat" cols="30" rows="5" class="form-control no-resize" id="alamat" >{{ $member->alamat }} </textarea>
-                                        <label class="form-label">Alamat</label>
-                                    </div>
+                                    @if($errors->has('foto'))
+                                        <span class="help-block">
+                                        {{ $errors->first('foto') }}
+                                        </span>
+                                    @endif
                                 </div>
                                 <button class="btn btn-primary waves-effect" >Update</button>
                         
@@ -79,5 +78,50 @@
                 </form>
             </div>
 
+
+@endsection
+@section('js')
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        //preview logo
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('.preview').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $(".inputfoto").change(function(){
+            readURL(this);
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(function() {
+          // We can attach the `fileselect` event to all file inputs on the page
+        $(document).on('change', ':file', function() {
+            var input = $(this),
+                numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+            input.trigger('fileselect', [numFiles, label]);
+        });
+          // We can watch for our custom `fileselect` event like this
+        $(document).ready( function() {
+            $(':file').on('fileselect', function(event, numFiles, label) {
+
+                var input = $(this).parents('.input-group').find(':text'),
+                    log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+                if( input.length ) {
+                    input.val(log);
+                }
+            });
+        });
+    });
+</script>
 
 @endsection
